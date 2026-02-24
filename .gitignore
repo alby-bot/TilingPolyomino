@@ -1,2 +1,8 @@
 /.lake
 /.lake
+
+# Blueprint generated output
+blueprint/web/
+blueprint/print/
+venv/
+*.paux
