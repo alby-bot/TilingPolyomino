@@ -11,8 +11,13 @@
 \usepackage[showmore, dep_graph]{blueprint}
 
 
-\input{macros/common}
-\input{macros/web}
+% Theorem environments (from macros/common)
+\newtheorem{theorem}{Theorem}[chapter]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
 
 \home{https://slef.github.io/TilingPolyomino}
 \github{https://github.com/slef/TilingPolyomino}
