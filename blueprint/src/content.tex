@@ -3,7 +3,7 @@
 
 \chapter{L-tromino Tiling of Rectangles and Deficient Rectangles}
 
-\section{Setup}
+\section{Basic Definitions}
 
 \begin{definition}
   \label{def:cell}
@@ -53,11 +53,14 @@
   The \emph{rectangle} $\mathit{rect}(m,n) = \{(x,y) \mid 0 \le x < m,\; 0 \le y < n\}$.
 \end{definition}
 
+\section{Necessary Conditions}
+
 \begin{lemma}
   \label{lem:area_div_3}
   \lean{LTileable.area_div_3}
   \uses{def:ltileable}
   \leanok
+  \proven
   If a region is L-tromino tileable then its cardinality is divisible by $3$.
 \end{lemma}
 
@@ -66,15 +69,118 @@
   \lean{not_tileable_1_by_n}
   \uses{def:ltileable, def:rectangle}
   \leanok
+  \proven
   No $1 \times n$ rectangle ($n \ge 1$) is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:not_n_by_1}
+  \lean{not_tileable_n_by_1}
+  \uses{def:ltileable, def:rectangle}
+  \leanok
+  \proven
+  No $n \times 1$ rectangle ($n \ge 1$) is L-tromino tileable.
 \end{lemma}
 
 \begin{lemma}
   \label{lem:not_3_by_odd}
   \lean{not_tileable_3_by_odd}
+  \uses{lem:not_1_by_n, def:ltileable, def:rectangle}
+  \leanok
+  \proven
+  No $3 \times (2k+1)$ rectangle is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:not_odd_by_3}
+  \lean{not_tileable_odd_by_3}
+  \uses{lem:not_n_by_1, def:ltileable, def:rectangle}
+  \leanok
+  \proven
+  No $(2k+1) \times 3$ rectangle is L-tromino tileable.
+\end{lemma}
+
+\section{Sufficient Conditions for Rectangles}
+
+\begin{lemma}
+  \label{lem:tileable_2x3}
+  \lean{tileable_2x3}
   \uses{def:ltileable, def:rectangle}
   \leanok
-  No $3 \times k$ rectangle with $k$ odd is L-tromino tileable.
+  \proven
+  The $2 \times 3$ rectangle is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_2x_mult3}
+  \lean{tileable_2x_mult3}
+  \uses{lem:tileable_2x3, def:ltileable, def:rectangle}
+  \leanok
+  \proven
+  For all $k \ge 0$, the $2 \times 3k$ rectangle is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_3x_even}
+  \lean{tileable_3x_even}
+  \uses{lem:tileable_2x3, def:ltileable, def:rectangle}
+  \leanok
+  \proven
+  For all $k \ge 1$, the $3 \times 2k$ rectangle is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_even_mult3}
+  \lean{tileable_even_mult3}
+  \uses{lem:tileable_3x_even, lem:tileable_2x_mult3, def:ltileable, def:rectangle}
+  \leanok
+  \proven
+  For $j,k \ge 1$ with $j$ even, the $j \times 3k$ (and $3k \times j$) rectangle is tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_5x6j}
+  \lean{tileable_5x6j}
+  \uses{lem:tileable_even_mult3, def:ltileable, def:rectangle}
+  \leanok
+  \proven
+  For all $j \ge 0$, the $5 \times 6j$ rectangle is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_5x_9plus6j}
+  \lean{tileable_5x_9plus6j}
+  \uses{lem:tileable_5x6j, def:ltileable, def:rectangle}
+  \leanok
+  \proven
+  For all $j \ge 0$, the $5 \times (9+6j)$ rectangle is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_odd_x_6j}
+  \lean{tileable_odd_x_6j}
+  \uses{lem:tileable_5x6j, lem:tileable_even_mult3, def:ltileable, def:rectangle}
+  \leanok
+  \proven
+  For $n \ge 3$ odd and $j \ge 0$, the $n \times 6j$ rectangle is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_odd_ge5_x_6iplus3}
+  \lean{tileable_odd_ge5_x_6iplus3}
+  \uses{lem:tileable_odd_x_6j, lem:tileable_5x_9plus6j, def:ltileable, def:rectangle}
+  \leanok
+  \proven
+  For $n \ge 5$ odd and $i \ge 1$, the $n \times (6i+3)$ rectangle is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_odd_x_mult3}
+  \lean{tileable_odd_x_mult3}
+  \uses{lem:tileable_odd_x_6j, lem:tileable_odd_ge5_x_6iplus3, def:ltileable, def:rectangle}
+  \leanok
+  \proven
+  For $n \ge 3$ odd and $k \ge 2$, the $n \times 3k$ rectangle is L-tromino tileable.
 \end{lemma}
 
 \begin{definition}
@@ -83,15 +189,15 @@
   \uses{def:rectangle}
   \leanok
   A rectangle $\mathit{rect}(m,n)$ satisfies the \emph{tileability conditions} if
-  $3 \mid mn$, $m \ge 2$, $n \ge 2$, and neither $(m = 3$ and $n$ odd$)$ nor
-  $(n = 3$ and $m$ odd$)$.
+  $3 \mid mn$, $m,n \ge 2$, and neither $(m = 3$ and $n$ odd$)$ nor $(n = 3$ and $m$ odd$)$.
 \end{definition}
 
 \begin{theorem}
   \label{thm:rect_iff}
   \lean{rect_tileable_iff}
   \uses{lem:area_div_3, lem:not_1_by_n, lem:not_3_by_odd,
-        def:recttileable_cond, def:rectangle, def:ltileable}
+        def:recttileable_cond, def:rectangle, def:ltileable,
+        lem:tileable_odd_x_mult3, lem:tileable_even_mult3}
   \leanok
   \proven
   A rectangle $\mathit{rect}(m,n)$ is L-tromino tileable if and only if
@@ -110,21 +216,168 @@
 \end{definition}
 
 \begin{lemma}
-  \label{lem:rmc_card}
+  \label{lem:rmc_area}
   \lean{rectMinusCorner_tileable_area_div_3}
   \uses{def:rect_minus_corner, def:ltileable}
   \leanok
+  \proven
   If $R^-(m,n)$ is L-tromino tileable then $3 \mid (mn-1)$,
   i.e.\ $mn \equiv 1 \pmod{3}$.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_2x2_minus}
+  \lean{tileable_2x2_minus}
+  \uses{def:rect_minus_corner, def:ltileable}
+  \leanok
+  \proven
+  $R^-(2,2)$ is L-tromino tileable (it is a single L-tromino).
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_5x2_minus}
+  \lean{tileable_5x2_minus}
+  \uses{def:rect_minus_corner, def:ltileable}
+  \leanok
+  \proven
+  $R^-(5,2)$ is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_4x4_minus}
+  \lean{tileable_4x4_minus}
+  \uses{def:rect_minus_corner, def:ltileable}
+  \leanok
+  \proven
+  $R^-(4,4)$ is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_5x5_minus}
+  \lean{tileable_5x5_minus}
+  \uses{def:rect_minus_corner, def:ltileable}
+  \leanok
+  \proven
+  $R^-(5,5)$ is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_7x7_minus}
+  \lean{tileable_7x7_minus}
+  \uses{def:rect_minus_corner, def:ltileable}
+  \leanok
+  \proven
+  $R^-(7,7)$ is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_4x7_minus}
+  \lean{tileable_4x7_minus}
+  \uses{lem:tileable_4x4_minus, thm:rect_iff, def:rect_minus_corner}
+  \leanok
+  \proven
+  $R^-(4,7)$ is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_3kplus2_x2_minus}
+  \lean{tileable_3kplus2_x2_minus}
+  \uses{lem:tileable_2x2_minus, lem:tileable_2x_mult3, def:rect_minus_corner}
+  \leanok
+  \proven
+  For all $k \ge 0$, $R^-(3k+2,\,2)$ is L-tromino tileable.
+  Decompose as a $3k \times 2$ rectangle plus a translated $R^-(2,2)$.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_5x_6kplus2_minus}
+  \lean{tileable_5x_6kplus2_minus}
+  \uses{lem:tileable_5x2_minus, lem:tileable_5x6j, def:rect_minus_corner}
+  \leanok
+  \proven
+  For all $k \ge 0$, $R^-(5,\,6k+2)$ is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_5x_6kplus5_minus}
+  \lean{tileable_5x_6kplus5_minus}
+  \uses{lem:tileable_5x5_minus, lem:tileable_5x6j, def:rect_minus_corner}
+  \leanok
+  \proven
+  For all $k \ge 0$, $R^-(5,\,6k+5)$ is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_5x_3kplus2_minus}
+  \lean{tileable_5x_3kplus2_minus}
+  \uses{lem:tileable_5x_6kplus2_minus, lem:tileable_5x_6kplus5_minus}
+  \leanok
+  \proven
+  For all $k \ge 0$, $R^-(5,\,3k+2)$ is L-tromino tileable.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_4x_rmc_3kplus1}
+  \lean{tileable_4x_rectMinus_3kplus1}
+  \uses{lem:tileable_4x4_minus, thm:rect_iff, def:rect_minus_corner}
+  \leanok
+  \proven
+  For all $k \ge 1$, $R^-(4,\,3k+1)$ is L-tromino tileable.
+  Induction: split off a $4 \times 3$ rectangle, leaving $R^-(4,\,3(k-1)+1)$.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_rmc_mod2_jk_ge2}
+  \lean{tileable_rectMinusCorner_mod2_jk_ge2}
+  \uses{lem:tileable_3kplus2_x2_minus, thm:rect_iff, def:rect_minus_corner}
+  \leanok
+  \proven
+  For $j,k \ge 2$, $R^-(3j+2,\,3k+2)$ is L-tromino tileable.
+  Split vertically: bottom $(3j+2) \times 3k$ rectangle plus top $R^-(3j+2,\,2)$.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_rmc_mod1_jk_ge}
+  \lean{tileable_rectMinusCorner_mod1_jk_ge}
+  \uses{lem:tileable_4x_rmc_3kplus1, thm:rect_iff, def:rect_minus_corner}
+  \leanok
+  \proven
+  For $j \ge 3$, $k \ge 1$, $R^-(3k+1,\,3j+1)$ is L-tromino tileable.
+  Split vertically: bottom $(3k+1) \times 3(j-1)$ rectangle plus top $R^-(3k+1,\,4)$.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_rmc_mod2_case}
+  \lean{tileable_rectMinusCorner_mod2_case}
+  \uses{lem:tileable_rmc_mod2_jk_ge2, lem:tileable_3kplus2_x2_minus,
+        lem:tileable_5x_3kplus2_minus, lem:tileable_5x5_minus,
+        lem:tileable_2x2_minus, def:rect_minus_corner}
+  \leanok
+  \proven
+  For $m,n \ge 2$ with $m \equiv n \equiv 2 \pmod{3}$ and $m \le n$,
+  $R^-(m,n)$ is L-tromino tileable. (Full case split on $j,k$.)
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:tileable_rmc_mod1_case}
+  \lean{tileable_rectMinusCorner_mod1_case}
+  \uses{lem:tileable_rmc_mod1_jk_ge, lem:tileable_4x_rmc_3kplus1,
+        lem:tileable_7x7_minus, lem:tileable_4x4_minus,
+        lem:tileable_4x7_minus, def:rect_minus_corner}
+  \leanok
+  \proven
+  For $m,n \ge 2$ with $m \equiv n \equiv 1 \pmod{3}$ and $m \le n$,
+  $R^-(m,n)$ is L-tromino tileable. (Full case split on $k, j$.)
 \end{lemma}
 
 \begin{theorem}
   \label{thm:rmc_iff}
   \lean{rectMinusCorner_tileable_iff}
-  \uses{lem:rmc_card, def:rect_minus_corner, def:ltileable, thm:rect_iff}
+  \uses{lem:rmc_area, lem:tileable_rmc_mod2_case, lem:tileable_rmc_mod1_case,
+        def:rect_minus_corner, def:ltileable, thm:rect_iff}
   \leanok
   \proven
-  $R^-(m,n)$ is L-tromino tileable if and only if $mn \equiv 1 \pmod{3}$.
+  For $m,n \ge 2$: $R^-(m,n)$ is L-tromino tileable if and only if $mn \equiv 1 \pmod{3}$.
 \end{theorem}
 
 \section{Rectangle Minus Two Opposite Corners}
@@ -142,26 +395,38 @@
   \label{lem:mod3_cases}
   \lean{mod3_one_two_or_two_one_of_area_mod3_two}
   \leanok
+  \proven
   If $mn \equiv 2 \pmod{3}$ then either $m \equiv 1,\; n \equiv 2 \pmod{3}$
   or $m \equiv 2,\; n \equiv 1 \pmod{3}$.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:single_ltromino}
+  \lean{LTileable_single_lTromino}
+  \uses{def:ltileable}
+  \leanok
+  \proven
+  Any single placed L-tromino defines an L-tromino tileable region.
+\end{lemma}
+
+\begin{lemma}
+  \label{lem:topright_ltromino}
+  \lean{LTileable_topRightLTromino}
+  \uses{lem:single_ltromino, def:ltileable}
+  \leanok
+  \proven
+  For any $j,k$, the top-right L-tromino region in $R^{--}(3j+1, 3k+2)$ is tileable.
 \end{lemma}
 
 \begin{lemma}
   \label{lem:3jplus2_3kplus1}
   \lean{tileable_rectangleMinus2Corner_3jplus2_3kplus1}
   \uses{def:rect_minus2, def:ltileable, thm:rmc_iff, lem:mod3_cases,
-        thm:rect_iff}
+        thm:rect_iff, lem:topright_ltromino}
   \leanok
   \proven
   $R^{--}(3j+2,\; 3k+1)$ is L-tromino tileable for all $j, k \ge 0$.
 \end{lemma}
-
-\begin{proof}
-  We split $R^{--}(3j+2, 3k+1)$ by a horizontal cut at height $3k$:
-  the top piece is a single L-tromino at the top-right, and the bottom
-  is $R^-(3j+2, 3k)$ (or a related rectMinusCorner), which is tileable
-  by induction via Theorem~\ref{thm:rmc_iff}.
-\end{proof}
 
 \begin{lemma}
   \label{lem:4_3kplus2}
@@ -171,12 +436,6 @@
   \proven
   $R^{--}(4,\; 3k+2)$ is L-tromino tileable for all $k \ge 0$.
 \end{lemma}
-
-\begin{proof}
-  An L-tromino placed at the top-right of $R^{--}(4,3k+2)$ covers the
-  corner cell, leaving a rotated copy of $R^-(4, 3k+2)$, which is
-  tileable by Theorem~\ref{thm:rmc_iff}.
-\end{proof}
 
 \begin{lemma}
   \label{lem:3jplus1_3kplus2}
@@ -188,18 +447,6 @@
   $R^{--}(3j+1,\; 3k+2)$ is L-tromino tileable for all $j, k \ge 0$.
 \end{lemma}
 
-\begin{proof}
-  Split $R^{--}(3j+1, 3k+2)$ vertically at $x = 3(j-1)$:
-  \begin{itemize}
-    \item Right piece: $R^{--}(4, 3k+2)$, tileable by Lemma~\ref{lem:4_3kplus2}.
-    \item Left piece: $\mathit{rect}(3(j-1), 3k+2)$, a full rectangle.
-      For $j \ge 3$ this is tileable by Theorem~\ref{thm:rect_iff}.
-      For $j = 2$ we use a special decomposition of $R^{--}(7, 3k+2)$
-      into pieces A (a swapped $R^{--}(3k+2,4)$), B (one L-tromino),
-      and C (a $3 \times (3k+1)$ rectangle), all tileable.
-  \end{itemize}
-\end{proof}
-
 \begin{theorem}
   \label{thm:rmc2_iff}
   \lean{rectMinus2Corner_tileable_of_area_mod2}
@@ -207,5 +454,6 @@
         def:rect_minus2, def:ltileable}
   \leanok
   \proven
-  $R^{--}(m,n)$ is L-tromino tileable if and only if $mn \equiv 2 \pmod{3}$.
+  $R^{--}(m,n)$ is L-tromino tileable whenever $mn \equiv 2 \pmod{3}$
+  (and $m,n \ge 3$).
 \end{theorem}
