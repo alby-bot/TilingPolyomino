@@ -9,6 +9,38 @@
 \usepackage{amssymb, amsthm, amsmath}
 \usepackage{hyperref}
 \usepackage[showmore, dep_graph]{blueprint}
+\usepackage{tikz}
+\usepackage{xcolor}
+\usetikzlibrary{patterns,arrows.meta}
+
+% ── Shared polyomino-figure macros ──────────────────────────────────────
+\newcommand{\cs}{0.50}  % cell size in cm
+\newcommand{\filledcell}[3]{%
+  \fill[#3] (#1*\cs,#2*\cs) rectangle ({(#1+1)*\cs},{(#2+1)*\cs});}
+\newcommand{\removedcell}[2]{%
+  \fill[gray!40] (#1*\cs,#2*\cs) rectangle ({(#1+1)*\cs},{(#2+1)*\cs});
+  \draw[red!70!black,very thick]
+    ({#1*\cs+0.05},{#2*\cs+0.05}) -- ({(#1+1)*\cs-0.05},{(#2+1)*\cs-0.05});
+  \draw[red!70!black,very thick]
+    ({(#1+1)*\cs-0.05},{#2*\cs+0.05}) -- ({#1*\cs+0.05},{(#2+1)*\cs-0.05});}
+\newcommand{\drawgrid}[2]{%
+  \draw[gray!40,thin] (0,0) grid ({#1*\cs},{#2*\cs});
+  \draw[black,thick] (0,0) rectangle ({#1*\cs},{#2*\cs});}
+% Tromino colors (base cases)
+\definecolor{tcolor1}{HTML}{8ECAE6}
+\definecolor{tcolor2}{HTML}{FCA311}
+\definecolor{tcolor3}{HTML}{06D6A0}
+\definecolor{tcolor4}{HTML}{EF476F}
+\definecolor{tcolor5}{HTML}{9B5DE5}
+\definecolor{tcolor6}{HTML}{FFD166}
+% Decomposition colors
+\definecolor{piece1color}{HTML}{8ECAE6}
+\definecolor{piece2color}{HTML}{FCA311}
+\definecolor{pieceAcolor}{HTML}{83C5BE}
+\definecolor{pieceBcolor}{HTML}{E56B6F}
+\definecolor{pieceCcolor}{HTML}{B5179E}
+\definecolor{rectColor}{HTML}{FFDDA0}
+\definecolor{minusColor}{HTML}{B3D8F5}
 
 
 % Theorem environments (from macros/common)

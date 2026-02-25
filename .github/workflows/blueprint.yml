@@ -26,7 +26,16 @@ jobs:
         run: sudo apt-get install -y graphviz libgraphviz-dev pkg-config
 
       - name: Install Python deps
-        run: pip install leanblueprint pygraphviz
+        run: pip install leanblueprint pygraphviz pymupdf
+
+      - name: Install tectonic (TeX compiler for TikZ figures)
+        run: |
+          curl -sSL \
+            https://github.com/tectonic-typesetting/tectonic/releases/download/tectonic%400.15.0/tectonic-0.15.0-x86_64-unknown-linux-musl.tar.gz \
+            | tar xz -C /usr/local/bin
+
+      - name: Install custom TikZ imager for plasTeX
+        run: python3 blueprint/install_imager.py
 
       - name: Build blueprint HTML
         run: leanblueprint web
