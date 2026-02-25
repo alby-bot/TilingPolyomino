@@ -273,3 +273,12 @@ for fpath in files:
 
 OUT.write_text("\n".join(lines) + "\n")
 print(f"Written {OUT} ({OUT.stat().st_size} bytes, {len(lines)} lines)")
+
+# Post-process: fix useWorker: true → false for proxy compatibility
+dep_graph_html = OUT.parent.parent / "web" / "dep_graph_document.html"
+if dep_graph_html.exists():
+    content = dep_graph_html.read_text()
+    fixed = content.replace("useWorker: true", "useWorker: false")
+    if fixed != content:
+        dep_graph_html.write_text(fixed)
+        print(f"Patched useWorker in {dep_graph_html}")
