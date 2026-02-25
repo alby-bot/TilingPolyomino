@@ -6,7 +6,6 @@
 \begin{definition}
   \label{lTromino}
   \lean{lTromino}
-  \uses{Prototile}
   \leanok
   \proven
   The L-tromino shape, anchored at origin
@@ -15,10 +14,9 @@
 \begin{definition}
   \label{lTrominoSet}
   \lean{lTrominoSet}
-  \uses{Protoset, lTromino}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino
+  A protoset containing just the L-tromino
 \end{definition}
 
 \section{Utility Lemmas}
@@ -26,10 +24,9 @@
 \begin{theorem}
   \label{lTromino_covers_3}
   \lean{lTromino_covers_3}
-  \uses{PlacedTile, PlacedTile_cells_card, lTrominoSet}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells
+  Each L-tromino covers exactly 3 cells
 \end{theorem}
 
 \section{Existential Tileability}
@@ -37,26 +34,22 @@
 \begin{definition}
   \label{LTileable}
   \lean{LTileable}
-  \uses{Region, Tileable, lTrominoSet, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A region is tileable by L-trominoes if there exists a valid tiling
 \end{definition}
 
 \begin{definition}
   \label{tiling_2x3}
   \lean{tiling_2x3}
-  \uses{TileSet, lTrominoSet}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  2×3 rectangle tiling
 \end{definition}
 
 \begin{theorem}
   \label{tiling_2x3_valid}
   \lean{tiling_2x3_valid}
-  \uses{LTileable, Valid, example, rectangle,
-        tiling_2x3}
   \leanok
   \proven
   \((tiling\_2x3\_valid)\)
@@ -67,59 +60,49 @@
 \begin{theorem}
   \label{LTileable_area_div_3}
   \lean{LTileable.area_div_3}
-  \uses{LTileable, Region, card_coveredCells, cellsAt,
-        example, lTromino_covers_3, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If a region is tileable, its area is divisible by 3
 \end{theorem}
 
 \begin{theorem}
   \label{rotateProto_lTromino_x_span}
   \lean{rotateProto_lTromino_x_span}
-  \uses{Cell, lTromino, rotateCell, rotateCell90,
-        rotateProto}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Any rotated L-tromino has two cells with different x-coordinates
 \end{theorem}
 
 \begin{theorem}
   \label{lTromino_placed_x_span}
   \lean{lTromino_placed_x_span}
-  \uses{Cell, PlacedTile, PlacedTile_cells, lTrominoSet,
-        rectangle, rotateProto_lTromino_x_span, translateCell}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Any placed L-tromino has cells with different x-coordinates
 \end{theorem}
 
 \begin{theorem}
   \label{rectangle_1_n_x_eq_0}
   \lean{rectangle_1_n_x_eq_0}
-  \uses{Cell, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A 1×n rectangle only has cells with x = 0
 \end{theorem}
 
 \begin{theorem}
   \label{not_tileable_1_by_n}
   \lean{not_tileable_1_by_n}
-  \uses{LTileable, TileSet, coveredCells, lTromino_placed_x_span,
-        rectangle, rectangle_1_n_x_eq_0}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A 1×n rectangle (n ≥ 1) is not tileable by L-trominoes
 \end{theorem}
 
 \begin{theorem}
   \label{not_tileable_1x3}
   \lean{not_tileable_1x3}
-  \uses{LTileable, not_tileable_1_by_n, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A 1×3 rectangle is not tileable (special case)
 \end{theorem}
 
 \begin{definition}
@@ -127,48 +110,40 @@
   \lean{swapRotation}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The rotation that corresponds to applying swap before/after
 \end{definition}
 
 \begin{theorem}
   \label{swap_rotateProto_lTromino}
   \lean{swap_rotateProto_lTromino}
-  \uses{lTromino, rotateProto, swapCell, swapRotation}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Key lemma: swapping a rotated L-tromino gives another rotation
 \end{theorem}
 
 \begin{theorem}
   \label{swapCell_translateCell}
   \lean{swapCell_translateCell}
-  \uses{Cell, swapCell, translateCell}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Swapping cells commutes with translation (with swapped offset)
 \end{theorem}
 
 \begin{theorem}
   \label{LTileable_swap}
   \lean{LTileable_swap}
-  \uses{LTileable, PlacedTile, PlacedTile_cells, Region,
-        TileSet, cellsAt, coveredCells, lTromino,
-        lTrominoSet, rectangle, rotateProto, swapCell,
-        swapCell_injective, swapRegion, swapRotation, swap_rotateProto_lTromino,
-        translateCell}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If a region is L-tileable, so is its swap
 \end{theorem}
 
 \begin{theorem}
   \label{not_tileable_n_by_1}
   \lean{not_tileable_n_by_1}
-  \uses{LTileable, LTileable_swap, not_tileable_1_by_n, rectangle,
-        swap_rectangle}
+  \uses{not_tileable_1_by_n}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  An n×1 rectangle (n ≥ 1) is not tileable by L-trominoes
 \end{theorem}
 
 \section{3×odd Impossibility}
@@ -176,10 +151,9 @@
 \begin{definition}
   \label{rect3x2}
   \lean{rect3x2}
-  \uses{Region, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The 3×2 rectangle used in the 3×odd impossibility proof
 \end{definition}
 
 \section{Key Lemmas for the 3×odd Impossibility Proof}
@@ -187,102 +161,81 @@
 \begin{theorem}
   \label{lTromino_y_span_2}
   \lean{lTromino_y_span_2}
-  \uses{Cell, PlacedTile, PlacedTile_cells, lTromino,
-        lTrominoSet, rotateCell, rotateCell90, rotateProto,
-        translateCell}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  An L-tromino has y-span at most 1: all cells have y-coordinates within 1 of each other
 \end{theorem}
 
 \begin{theorem}
   \label{tile_covering_00_y_bound}
   \lean{tile_covering_00_y_bound}
-  \uses{Cell, PlacedTile, lTrominoSet, lTromino_y_span_2}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A tile covering (0,0) has all cells with y < 2 (assuming y ≥ 0)
 \end{theorem}
 
 \begin{theorem}
   \label{tile_covering_20_y_bound}
   \lean{tile_covering_20_y_bound}
-  \uses{Cell, PlacedTile, lTrominoSet, lTromino_y_span_2}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A tile covering (2,0) has all cells with y < 2 (assuming y ≥ 0)
 \end{theorem}
 
 \begin{theorem}
   \label{lTromino_x_span_2}
   \lean{lTromino_x_span_2}
-  \uses{Cell, PlacedTile, PlacedTile_cells, lTromino,
-        lTrominoSet, rect3x2, rectangle, rotateCell,
-        rotateCell90, rotateProto, translateCell}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  An L-tromino has x-span at most 1: all cells have x-coordinates within 1 of each other
 \end{theorem}
 
 \begin{theorem}
   \label{tile_covering_00_in_3x2}
   \lean{tile_covering_00_in_3x2}
-  \uses{PlacedTile, lTrominoSet, mem_rectangle, rect3x2,
-        rectangle, tile_covering_00_y_bound}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If a tile covers (0,0) and is contained in rectangle 3 n (n ≥ 2),
 \end{theorem}
 
 \begin{theorem}
   \label{tile_covering_20_in_3x2}
   \lean{tile_covering_20_in_3x2}
-  \uses{PlacedTile, lTrominoSet, mem_rectangle, rect3x2,
-        rectangle, tile_covering_20_y_bound}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If a tile covers (2,0) and is contained in rectangle 3 n (n ≥ 2),
 \end{theorem}
 
 \begin{theorem}
   \label{tiles_00_20_disjoint}
   \lean{tiles_00_20_disjoint}
-  \uses{TileSet, Valid, lTrominoSet, rect3x2,
-        rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Tiles covering (0,0) and (2,0) in a 3×n tiling (n≥2) must be disjoint
 \end{theorem}
 
 \begin{theorem}
   \label{tiles_00_20_cover_3x2}
   \lean{tiles_00_20_cover_3x2}
-  \uses{TileSet, Valid, lTrominoSet, lTromino_covers_3,
-        rect3x2, rectangle, tile_covering_00_in_3x2, tile_covering_20_in_3x2,
-        tiles_00_20_disjoint}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The two tiles covering (0,0) and (2,0) cover exactly rect3x2
 \end{theorem}
 
 \begin{theorem}
   \label{remaining_tiles_cover}
   \lean{remaining_tiles_cover}
-  \uses{TileSet, Valid, coveredCells, lTrominoSet,
-        rect3x2, rectangle, tiles_00_20_cover_3x2}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The remaining tiles (excluding i and j) cover exactly rectangle 3 n minus rect3x2
 \end{theorem}
 
 \begin{theorem}
   \label{rectangle_minus_3x2}
   \lean{rectangle_minus_3x2}
-  \uses{mem_rectangle, rect3x2, rectangle, translateCell,
-        translateRegion}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  rectangle 3 n minus rect3x2 equals the translated rectangle 3 (n-2)
 \end{theorem}
 
 \section{Full Rectangle Characterization}
@@ -292,16 +245,15 @@
   \lean{RectTileableConditions}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The conditions for a non-trivial n×m rectangle to be tileable by L-trominoes.
 \end{definition}
 
 \begin{theorem}
   \label{empty_LTileable}
   \lean{empty_LTileable}
-  \uses{LTileable, empty_tileable, lTrominoSet}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The empty region is L-tileable
 \end{theorem}
 
 \section{Combining Tilings}
@@ -309,31 +261,25 @@
 \begin{theorem}
   \label{LTileable_translate}
   \lean{LTileable_translate}
-  \uses{Cell, LTileable, Region, Tileable_translate,
-        lTrominoSet, translateRegion}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A translated L-tileable region is L-tileable
 \end{theorem}
 
 \begin{theorem}
   \label{LTileable_translate_iff}
   \lean{LTileable_translate_iff}
-  \uses{Cell, LTileable, Region, Tileable_translate_iff,
-        lTrominoSet, translate, translateRegion}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  L-tileability is preserved by translation (both directions)
 \end{theorem}
 
 \begin{theorem}
   \label{LTileable_of_translate_eq}
   \lean{LTileable_of_translate_eq}
-  \uses{Cell, LTileable, Region, Tileable_of_translate_eq,
-        lTrominoSet, rectangle, translateRegion}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If R = S.image(translate by offset) and R is L-tileable, then S is L-tileable
 \end{theorem}
 
 \section{3×odd Impossibility (requires translation invariance)}
@@ -341,41 +287,35 @@
 \begin{theorem}
   \label{not_tileable_3_by_odd}
   \lean{not_tileable_3_by_odd}
-  \uses{LTileable, LTileable_of_translate_eq, TileSet, cellsAt,
-        coveredCells, lTrominoSet, lTromino_x_span_2, mem_rectangle,
-        not_tileable_n_by_1, rect3x2, rectangle, rectangle_minus_3x2,
-        remaining_tiles_cover}
+  \uses{not_tileable_1_by_n}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A 3×(2k+1) rectangle is not tileable by L-trominoes.
 \end{theorem}
 
 \begin{theorem}
   \label{not_tileable_odd_by_3}
   \lean{not_tileable_odd_by_3}
-  \uses{LTileable, LTileable_swap, not_tileable_3_by_odd, rectangle,
-        swap_rectangle}
+  \uses{not_tileable_n_by_1}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A (2k+1)×3 rectangle is not tileable by L-trominoes
 \end{theorem}
 
 \begin{theorem}
   \label{rectangle_0_m}
   \lean{rectangle_0_m}
-  \uses{rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  rectangle 0 m = ∅
 \end{theorem}
 
 \begin{theorem}
   \label{rectangle_n_0}
   \lean{rectangle_n_0}
-  \uses{rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  rectangle n 0 = ∅
 \end{theorem}
 
 \section{Rectangle Decomposition Lemmas}
@@ -383,28 +323,25 @@
 \begin{theorem}
   \label{LTileable_swap_rectangle}
   \lean{LTileable_swap_rectangle}
-  \uses{LTileable, LTileable_swap, rectangle, swap_rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Swapping dimensions preserves tileability (90° rotation)
 \end{theorem}
 
 \begin{theorem}
   \label{LTileable_horizontal_union}
   \lean{LTileable_horizontal_union}
-  \uses{LTileable, Tileable_horizontal_union, lTrominoSet, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If we can tile two horizontally adjacent rectangles, we can tile their union
 \end{theorem}
 
 \begin{theorem}
   \label{LTileable_vertical_union}
   \lean{LTileable_vertical_union}
-  \uses{LTileable, Tileable_vertical_union, lTrominoSet, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If we can tile two vertically adjacent rectangles, we can tile their union
 \end{theorem}
 
 \section{Base Case Tilings}
@@ -412,80 +349,70 @@
 \begin{theorem}
   \label{tileable_2x3}
   \lean{tileable_2x3}
-  \uses{LTileable, rectangle, tiling_2x3, tiling_2x3_valid}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  2×3 is tileable
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_3x2}
   \lean{tileable_3x2}
-  \uses{LTileable, LTileable_swap_rectangle, rectangle, tileable_2x3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  3×2 is tileable
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_3x6}
   \lean{tileable_3x6}
-  \uses{LTileable, LTileable_vertical_union, rectangle, tileable_3x2}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  3×6 is tileable (3 copies of 3×2)
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_2x6}
   \lean{tileable_2x6}
-  \uses{LTileable, LTileable_vertical_union, rectangle, tileable_2x3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  2×6 is tileable (2 copies of 2×3)
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_5x6}
   \lean{tileable_5x6}
-  \uses{LTileable, LTileable_horizontal_union, rectangle, tileable_2x6,
-        tileable_3x6}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  5×6 is tileable (2×6 + 3×6)
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_6x5}
   \lean{tileable_6x5}
-  \uses{LTileable, LTileable_swap_rectangle, rectangle, tileable_5x6}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  6×5 is tileable (by swap)
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_2x9}
   \lean{tileable_2x9}
-  \uses{LTileable, LTileable_vertical_union, rectangle, tileable_2x3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  2×9 is tileable (3 copies of 2×3)
 \end{theorem}
 
 \begin{definition}
   \label{tiling_5x9}
   \lean{tiling_5x9}
-  \uses{TileSet, lTrominoSet}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Explicit tiling of the 5×9 rectangle with 15 L-trominoes.
 \end{definition}
 
 \begin{theorem}
   \label{tiling_5x9_valid}
   \lean{tiling_5x9_valid}
-  \uses{Valid, rectangle, tiling_5x9}
   \leanok
   \proven
   \((tiling\_5x9\_valid)\)
@@ -494,7 +421,6 @@
 \begin{theorem}
   \label{tileable_5x9}
   \lean{tileable_5x9}
-  \uses{LTileable, rectangle, tiling_5x9, tiling_5x9_valid}
   \leanok
   \proven
   \((tileable\_5x9)\)
@@ -503,164 +429,147 @@
 \begin{theorem}
   \label{tileable_9x5}
   \lean{tileable_9x5}
-  \uses{LTileable, LTileable_swap_rectangle, rectangle, tileable_5x9}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  9×5 is tileable (by swap)
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_6x3}
   \lean{tileable_6x3}
-  \uses{LTileable, LTileable_horizontal_union, rectangle, tileable_2x3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  6×3 is tileable (3 copies of 2×3)
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_3x_even}
   \lean{tileable_3x_even}
-  \uses{LTileable, LTileable_vertical_union, rectangle, tileable_3x2}
+  \uses{tileable_2x3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  3×(2k) is tileable for k ≥ 1
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_even_x3}
   \lean{tileable_even_x3}
-  \uses{LTileable, LTileable_swap_rectangle, rectangle, tileable_3x_even}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  (2k)×3 is tileable for k ≥ 1
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_2x_mult3}
   \lean{tileable_2x_mult3}
-  \uses{LTileable, LTileable_vertical_union, empty_LTileable, rectangle,
-        rectangle_n_0, tileable_2x3}
+  \uses{tileable_2x3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  2×(3k) is tileable for any k
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_mult3_x2}
   \lean{tileable_mult3_x2}
-  \uses{LTileable, LTileable_swap_rectangle, rectangle, tileable_2x_mult3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  (3k)×2 is tileable for any k
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_even_mult3}
   \lean{tileable_even_mult3}
-  \uses{LTileable, LTileable_horizontal_union, rectangle, tileable_2x_mult3}
+  \uses{tileable_3x_even, tileable_2x_mult3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If n is even (n = 2j, j ≥ 1) and m is a multiple of 3, then n × m is tileable
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_3x6j}
   \lean{tileable_3x6j}
-  \uses{LTileable, LTileable_vertical_union, empty_LTileable, rectangle,
-        rectangle_n_0, tileable_3x6}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  3 × (6j) is tileable for any j
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_5x6j}
   \lean{tileable_5x6j}
-  \uses{LTileable, LTileable_vertical_union, empty_LTileable, rectangle,
-        rectangle_n_0, tileable_5x6}
+  \uses{tileable_even_mult3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  5 × (6j) is tileable for any j
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_5x_9plus6j}
   \lean{tileable_5x_9plus6j}
-  \uses{LTileable, LTileable_vertical_union, rectangle, tileable_5x6j,
-        tileable_5x9}
+  \uses{tileable_5x6j}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  5 × (9 + 6j) is tileable: 5×9 base case plus j copies of 5×6
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_odd_x_6j}
   \lean{tileable_odd_x_6j}
-  \uses{LTileable, LTileable_horizontal_union, rectangle, tileable_2x_mult3,
-        tileable_3x6j, tileable_5x6j}
+  \uses{tileable_5x6j, tileable_even_mult3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  n × (6j) is tileable for odd n ≥ 3, any j ≥ 0 (simple induction on n)
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_5x_6iplus3}
   \lean{tileable_5x_6iplus3}
-  \uses{LTileable, rectangle, tileable_5x_9plus6j}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  5 × (6i + 3) is tileable for i ≥ 1 (equals 5 × (9 + 6(i-1)))
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_odd_ge5_x_6iplus3}
   \lean{tileable_odd_ge5_x_6iplus3}
-  \uses{LTileable, LTileable_horizontal_union, rectangle, tileable_2x_mult3,
-        tileable_5x_6iplus3}
+  \uses{tileable_odd_x_6j, tileable_5x_9plus6j}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  n × (6i + 3) is tileable for odd n ≥ 5, i ≥ 1
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_odd_x_mult3}
   \lean{tileable_odd_x_mult3}
-  \uses{LTileable, rectangle, tileable_odd_ge5_x_6iplus3, tileable_odd_x_6j}
+  \uses{tileable_odd_x_6j, tileable_odd_ge5_x_6iplus3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  n × (3k) is tileable for odd n ≥ 3, k ≥ 2, with n ≠ 3 when k is odd
 \end{theorem}
 
 \begin{theorem}
   \label{rect_tileable_of_conditions}
   \lean{rect_tileable_of_conditions}
-  \uses{LTileable, LTileable_swap_rectangle, RectTileableConditions, empty_LTileable,
-        rectangle, rectangle_0_m, rectangle_n_0, tileable_even_mult3,
-        tileable_odd_x_mult3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Sufficiency: if conditions hold, the rectangle is tileable
 \end{theorem}
 
 \begin{theorem}
   \label{conditions_of_rect_tileable}
   \lean{conditions_of_rect_tileable}
-  \uses{LTileable, RectTileableConditions, not_tileable_1_by_n, not_tileable_3_by_odd,
-        not_tileable_n_by_1, not_tileable_odd_by_3, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Necessity: if tileable, the conditions hold
 \end{theorem}
 
 \begin{theorem}
   \label{rect_tileable_iff}
   \lean{rect_tileable_iff}
-  \uses{LTileable, RectTileableConditions, conditions_of_rect_tileable, rect_tileable_of_conditions,
-        rectangle}
+  \uses{LTileable_area_div_3, not_tileable_1_by_n, not_tileable_3_by_odd, tileable_odd_x_mult3,
+        tileable_even_mult3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  **Main Theorem**: Complete characterization of L-tileable rectangles.
 \end{theorem}
 
 \section{Deficient Rectangles (Three-Cornered)}
@@ -668,181 +577,153 @@
 \begin{definition}
   \label{cornerTR}
   \lean{cornerTR}
-  \uses{Cell, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The top-right corner cell of an `n × m` rectangle (0-based coordinates).
 \end{definition}
 
 \begin{definition}
   \label{cornerTR2}
   \lean{cornerTR2}
-  \uses{Cell, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The cell immediately to the left of the top-right corner of an `n × m`
 \end{definition}
 
 \begin{definition}
   \label{rectangleMinusCorner}
   \lean{rectangleMinusCorner}
-  \uses{Region, cornerTR, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A three-cornered `n × m` rectangle: `rectangle n m` with its top-right corner removed.
 \end{definition}
 
 \begin{theorem}
   \label{cornerTR_mem_rectangle}
   \lean{cornerTR_mem_rectangle}
-  \uses{cornerTR, cornerTR2, mem_rectangle, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The top-right corner is indeed in the rectangle when `n,m ≥ 1`.
 \end{theorem}
 
 \begin{theorem}
   \label{cornerTR2_mem_rectangle}
   \lean{cornerTR2_mem_rectangle}
-  \uses{cornerTR2, mem_rectangle, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The cell `cornerTR2` is in the rectangle `rectangle n m` when `n ≥ 2` and `m ≥ 1`.
 \end{theorem}
 
 \begin{theorem}
   \label{rectangleMinusCorner_card}
   \lean{rectangleMinusCorner_card}
-  \uses{cornerTR, cornerTR_mem_rectangle, rectangle, rectangleMinusCorner}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Cardinality of a three-cornered rectangle: one less than the full rectangle.
 \end{theorem}
 
 \begin{definition}
   \label{rectangleMinusCorner_rexp}
   \lean{rectangleMinusCorner_rexp}
-  \uses{RExp_r, rect, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  RExp representation of `rectangleMinusCorner n m`.
 \end{definition}
 
 \begin{theorem}
   \label{rectangle_eq_rect_coe}
   \lean{rectangle_eq_rect_coe}
-  \uses{Cell, mem_rectangle, rect, rectangle,
-        rectangleMinusCorner, rectangleMinusCorner_rexp}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The Finset `rectangle n m` equals the Set `rect 0 0 n m` when coerced to Set.
 \end{theorem}
 
 \begin{theorem}
   \label{rectangleMinusCorner_rexp_eval}
   \lean{rectangleMinusCorner_rexp_eval}
-  \uses{Cell, RExp_eval, cornerTR, mem_rectangle,
-        rectangle, rectangleMinusCorner, rectangleMinusCorner_rexp, rectangle_eq_rect_coe}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The RExp evaluation of `rectangleMinusCorner\_rexp n m` equals the Finset
 \end{theorem}
 
 \begin{theorem}
   \label{swap_rectangleMinusCorner_rexp}
   \lean{swap_rectangleMinusCorner_rexp}
-  \uses{RExp_eval, rectangle, rectangleMinusCorner_rexp}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Reflecting (swapping x and y) a rectangle-minus-corner swaps the dimensions.
 \end{theorem}
 
 \begin{theorem}
   \label{rectangleMinusCorner_split_horizontal_rexp}
   \lean{rectangleMinusCorner_split_horizontal_rexp}
-  \uses{RExp_eval, RExp_r, rectangle, rectangleMinusCorner_rexp}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Horizontal split of a rectangle-minus-corner (RExp version).
 \end{theorem}
 
 \begin{theorem}
   \label{rectangleMinusCorner_split_vertical_rexp}
   \lean{rectangleMinusCorner_split_vertical_rexp}
-  \uses{RExp_eval, RExp_r, rectangleMinusCorner_rexp, reflect,
-        swapRegion}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Vertical split of a rectangle-minus-corner (RExp version).
 \end{theorem}
 
 \begin{theorem}
   \label{swapRegion_eq_reflect_coe}
   \lean{swapRegion_eq_reflect_coe}
-  \uses{Cell, Region, reflect, swapCell,
-        swapCell_involutive, swapRegion, translate, translateRegion}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The Finset `swapRegion r` coerced to Set equals `reflect` of `r` coerced to Set.
 \end{theorem}
 
 \begin{theorem}
   \label{translateRegion_eq_translate_coe}
   \lean{translateRegion_eq_translate_coe}
-  \uses{Cell, Region, rectangle, translate,
-        translateCell, translateRegion}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The Finset `translateRegion r offset` coerced to Set equals `translate` of `r`
 \end{theorem}
 
 \begin{theorem}
   \label{swap_rectangleMinusCorner}
   \lean{swap_rectangleMinusCorner}
-  \uses{Cell, RExp_eval, rectangle, rectangleMinusCorner,
-        rectangleMinusCorner_rexp, rectangleMinusCorner_rexp_eval, reflect, swapRegion,
-        swapRegion_eq_reflect_coe, swap_rectangleMinusCorner_rexp}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Swapping a three-cornered `n × m` rectangle yields the `m × n` one.
 \end{theorem}
 
 \begin{definition}
   \label{rectangleMinus2Corner}
   \lean{rectangleMinus2Corner}
-  \uses{Region, cornerTR, cornerTR2, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A rectangle `n × m` with both the top-right corner and the square
 \end{definition}
 
 \begin{theorem}
   \label{rectangleMinus2Corner_card}
   \lean{rectangleMinus2Corner_card}
-  \uses{cornerTR, cornerTR2, cornerTR2_mem_rectangle, cornerTR_mem_rectangle,
-        rectangle, rectangleMinus2Corner}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Cardinality of a rectangle with two adjacent top boundary squares removed.
 \end{theorem}
 
 \begin{theorem}
   \label{swapCell_cornerTR}
   \lean{swapCell_cornerTR}
-  \uses{cornerTR, swapCell}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Swapping the top-right corner of an `n × m` rectangle gives the
 \end{theorem}
 
 \begin{theorem}
   \label{LTileable_swap_rectangleMinusCorner}
   \lean{LTileable_swap_rectangleMinusCorner}
-  \uses{LTileable, LTileable_swap, rectangle, rectangleMinusCorner,
-        swap_rectangleMinusCorner}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  L-tileability of three-cornered rectangles is symmetric in the dimensions.
 \end{theorem}
 
 \section{Splitting three-cornered rectangles}
@@ -850,23 +731,17 @@
 \begin{theorem}
   \label{rectangleMinusCorner_split_horizontal}
   \lean{rectangleMinusCorner_split_horizontal}
-  \uses{Cell, RExp_eval, RExp_r, rectangle,
-        rectangleMinusCorner, rectangleMinusCorner_rexp, rectangleMinusCorner_rexp_eval, rectangleMinusCorner_split_horizontal_rexp,
-        rectangle_eq_rect_coe, translateRegion, translateRegion_eq_translate_coe}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Horizontal split of a three-cornered rectangle.
 \end{theorem}
 
 \begin{theorem}
   \label{rectangleMinusCorner_split_vertical}
   \lean{rectangleMinusCorner_split_vertical}
-  \uses{Cell, RExp_eval, RExp_r, rectangle,
-        rectangleMinusCorner, rectangleMinusCorner_rexp, rectangleMinusCorner_rexp_eval, rectangleMinusCorner_split_vertical_rexp,
-        rectangle_eq_rect_coe, translateRegion, translateRegion_eq_translate_coe}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Vertical split of a three-cornered rectangle.
 \end{theorem}
 
 \section{Simple mod-3 helper lemmas}
@@ -876,7 +751,7 @@
   \lean{mod3_ne_zero_of_mul_mod3_ne_zero_left}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If `(n * m) \% 3 ≠ 0`, then in particular `n \% 3 ≠ 0`.
 \end{theorem}
 
 \begin{theorem}
@@ -884,49 +759,44 @@
   \lean{mod3_eq_one_or_two_of_ne_zero}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  \((mod3\_eq\_one\_or\_two\_of\_ne\_zero)\)
 \end{theorem}
 
 \begin{theorem}
   \label{mod3_both_one_or_two_of_area_mod3_zero}
   \lean{mod3_both_one_or_two_of_area_mod3_zero}
-  \uses{mod3_eq_one_or_two_of_ne_zero, mod3_ne_zero_of_mul_mod3_ne_zero_left}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  \((mod3\_both\_one\_or\_two\_of\_area\_mod3\_zero)\)
 \end{theorem}
 
 \begin{theorem}
   \label{mod3_one_two_or_two_one_of_area_mod3_two}
   \lean{mod3_one_two_or_two_one_of_area_mod3_two}
-  \uses{mod3_eq_one_or_two_of_ne_zero, mod3_ne_zero_of_mul_mod3_ne_zero_left, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If `(n * m) \% 3 = 2`, then modulo `3` the residues of `n` and `m` are
 \end{theorem}
 
 \begin{theorem}
   \label{rectMinusCorner_tileable_area_div_3}
   \lean{rectMinusCorner_tileable_area_div_3}
-  \uses{LTileable, rectangle, rectangleMinusCorner, rectangleMinusCorner_card}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If a three-cornered rectangle is L-tileable, then its area is divisible by 3.
 \end{theorem}
 
 \begin{definition}
   \label{tiling_2x2_minus}
   \lean{tiling_2x2_minus}
-  \uses{TileSet, lTrominoSet, mkPlacedTile, mkTileSet}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A tiling of the 2×2 rectangle with its top-right corner removed.
 \end{definition}
 
 \begin{theorem}
   \label{tiling_2x2_minus_valid}
   \lean{tiling_2x2_minus_valid}
-  \uses{Valid, rectangle, rectangleMinusCorner, tiling_2x2_minus}
   \leanok
   \proven
   \((tiling\_2x2\_minus\_valid)\)
@@ -935,26 +805,22 @@
 \begin{theorem}
   \label{tileable_2x2_minus}
   \lean{tileable_2x2_minus}
-  \uses{LTileable, rectangle, rectangleMinusCorner, tiling_2x2_minus,
-        tiling_2x2_minus_valid}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The 2×2 rectangle with a missing top-right corner is L-tileable.
 \end{theorem}
 
 \begin{definition}
   \label{tiling_5x2_minus}
   \lean{tiling_5x2_minus}
-  \uses{TileSet, lTrominoSet}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Explicit tiling of the 5×2 rectangle with its top-right corner removed.
 \end{definition}
 
 \begin{theorem}
   \label{tiling_5x2_minus_valid}
   \lean{tiling_5x2_minus_valid}
-  \uses{Valid, rectangle, rectangleMinusCorner, tiling_5x2_minus}
   \leanok
   \proven
   \((tiling\_5x2\_minus\_valid)\)
@@ -963,26 +829,22 @@
 \begin{theorem}
   \label{tileable_5x2_minus}
   \lean{tileable_5x2_minus}
-  \uses{LTileable, rectangle, rectangleMinusCorner, tiling_5x2_minus,
-        tiling_5x2_minus_valid}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The 5×2 rectangle with a missing top-right corner is L-tileable.
 \end{theorem}
 
 \begin{definition}
   \label{tiling_4x4_minus}
   \lean{tiling_4x4_minus}
-  \uses{TileSet, lTrominoSet}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Explicit tiling of the 4×4 rectangle with its top-right corner removed.
 \end{definition}
 
 \begin{theorem}
   \label{tiling_4x4_minus_valid}
   \lean{tiling_4x4_minus_valid}
-  \uses{Valid, rectangle, rectangleMinusCorner, tiling_4x4_minus}
   \leanok
   \proven
   \((tiling\_4x4\_minus\_valid)\)
@@ -991,26 +853,22 @@
 \begin{theorem}
   \label{tileable_4x4_minus}
   \lean{tileable_4x4_minus}
-  \uses{LTileable, rectangle, rectangleMinusCorner, tiling_2x3,
-        tiling_4x4_minus, tiling_4x4_minus_valid}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The 4×4 rectangle with a missing top-right corner is L-tileable.
 \end{theorem}
 
 \begin{definition}
   \label{tiling_5x5_minus}
   \lean{tiling_5x5_minus}
-  \uses{TileSet, lTrominoSet, rectangle, tiling_2x3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Explicit tiling of the 5×5 rectangle with its top-right corner removed.
 \end{definition}
 
 \begin{theorem}
   \label{tiling_5x5_minus_valid}
   \lean{tiling_5x5_minus_valid}
-  \uses{Valid, rectangle, rectangleMinusCorner, tiling_5x5_minus}
   \leanok
   \proven
   \((tiling\_5x5\_minus\_valid)\)
@@ -1019,26 +877,22 @@
 \begin{theorem}
   \label{tileable_5x5_minus}
   \lean{tileable_5x5_minus}
-  \uses{LTileable, rectangle, rectangleMinusCorner, tiling_5x5_minus,
-        tiling_5x5_minus_valid}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The 5×5 rectangle with a missing top-right corner is L-tileable.
 \end{theorem}
 
 \begin{definition}
   \label{tiling_7x7_minus}
   \lean{tiling_7x7_minus}
-  \uses{TileSet, lTrominoSet}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Explicit tiling of the 7×7 rectangle with its top-right corner removed.
 \end{definition}
 
 \begin{theorem}
   \label{tiling_7x7_minus_valid}
   \lean{tiling_7x7_minus_valid}
-  \uses{Valid, rectangle, rectangleMinusCorner, tiling_7x7_minus}
   \leanok
   \proven
   \((tiling\_7x7\_minus\_valid)\)
@@ -1047,11 +901,9 @@
 \begin{theorem}
   \label{tileable_7x7_minus}
   \lean{tileable_7x7_minus}
-  \uses{LTileable, rectangle, rectangleMinusCorner, tiling_7x7_minus,
-        tiling_7x7_minus_valid}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The 7×7 rectangle with a missing top-right corner is L-tileable.
 \end{theorem}
 
 \section{Combining rectangles with three-cornered rectangles}
@@ -1059,101 +911,86 @@
 \begin{theorem}
   \label{rectangleMinusCorner_split_vertical_disjoint}
   \lean{rectangleMinusCorner_split_vertical_disjoint}
-  \uses{mem_rectangle, rectangle, rectangleMinusCorner, translateCell,
-        translateRegion}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The two parts of a vertical split of a three-cornered rectangle are disjoint
 \end{theorem}
 
 \begin{theorem}
   \label{rectangleMinusCorner_split_horizontal_disjoint}
   \lean{rectangleMinusCorner_split_horizontal_disjoint}
-  \uses{mem_rectangle, rectangle, rectangleMinusCorner, translateCell,
-        translateRegion}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The two parts of a horizontal split of a three-cornered rectangle are disjoint
 \end{theorem}
 
 \begin{theorem}
   \label{LTileable_vertical_union_rect_minus}
   \lean{LTileable_vertical_union_rect_minus}
-  \uses{LTileable, LTileable_translate, Tileable_union, lTrominoSet,
-        rectangle, rectangleMinusCorner, rectangleMinusCorner_split_vertical, rectangleMinusCorner_split_vertical_disjoint}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If we can tile a rectangle and a translated three-cornered rectangle (vertically adjacent),
 \end{theorem}
 
 \begin{theorem}
   \label{LTileable_horizontal_union_rect_minus}
   \lean{LTileable_horizontal_union_rect_minus}
-  \uses{LTileable, LTileable_translate, Tileable_union, lTrominoSet,
-        rectangle, rectangleMinusCorner, rectangleMinusCorner_split_horizontal, rectangleMinusCorner_split_horizontal_disjoint}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If we can tile a rectangle and a translated three-cornered rectangle (horizontally adjacent),
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_3kplus2_x2_minus}
   \lean{tileable_3kplus2_x2_minus}
-  \uses{LTileable, LTileable_horizontal_union_rect_minus, rectangle, rectangleMinusCorner,
-        tileable_2x2_minus, tileable_mult3_x2}
+  \uses{tileable_2x2_minus, tileable_mult3_x2}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  For any `k`, the three-cornered `(3k+2) × 2` rectangle is L-tileable.
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_4x7_minus}
   \lean{tileable_4x7_minus}
-  \uses{LTileable, LTileable_vertical_union_rect_minus, rectangle, rectangleMinusCorner,
-        tileable_4x4_minus, tileable_even_x3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The 4×7 rectangle with a missing top-right corner is L-tileable.
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_5x_6kplus5_minus}
   \lean{tileable_5x_6kplus5_minus}
-  \uses{LTileable, LTileable_vertical_union_rect_minus, rectangle, rectangleMinusCorner,
-        tileable_5x5_minus, tileable_5x6j}
+  \uses{tileable_5x5_minus, tileable_5x6j}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The three-cornered `5 × (6k + 5)` rectangle splits as a `5 × (6k)` rectangle
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_5x_6kplus2_minus}
   \lean{tileable_5x_6kplus2_minus}
-  \uses{LTileable, LTileable_vertical_union_rect_minus, rectangle, rectangleMinusCorner,
-        tileable_5x2_minus, tileable_5x6j}
+  \uses{tileable_5x2_minus, tileable_5x6j}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The three-cornered `5 × (6k + 2)` rectangle splits as a `5 × (6k)` rectangle
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_5x_3kplus2_minus}
   \lean{tileable_5x_3kplus2_minus}
-  \uses{LTileable, rectangle, rectangleMinusCorner, tileable_5x_6kplus2_minus,
-        tileable_5x_6kplus5_minus}
+  \uses{tileable_5x_6kplus2_minus, tileable_5x_6kplus5_minus}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If `k` is odd or even, then `3k+2` is of the form `6k'+5` or `6k'+2` respectively,
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_rectMinusCorner_mod2_jk_ge2}
   \lean{tileable_rectMinusCorner_mod2_jk_ge2}
-  \uses{LTileable, LTileable_vertical_union_rect_minus, RectTileableConditions, rect_tileable_iff,
-        rectangle, rectangleMinusCorner, tileable_3kplus2_x2_minus}
+  \uses{tileable_3kplus2_x2_minus, rect_tileable_iff}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  For `j,k ≥ 2`, the three-cornered `(3j+2) × (3k+2)` rectangle is L-tileable.
 \end{theorem}
 
 \section{Helper lemmas for the mod 3 = 1 case}
@@ -1161,147 +998,126 @@
 \begin{theorem}
   \label{tileable_4x_rectMinus_3kplus1}
   \lean{tileable_4x_rectMinus_3kplus1}
-  \uses{LTileable, LTileable_vertical_union_rect_minus, rectangle, rectangleMinusCorner,
-        tileable_4x4_minus, tileable_even_x3}
+  \uses{tileable_4x4_minus, rect_tileable_iff}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  For `k ≥ 1`, the three-cornered `4 × (3k+1)` rectangle is L-tileable.
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_rect_mod1_by_mult3}
   \lean{tileable_rect_mod1_by_mult3}
-  \uses{LTileable, rect_tileable_iff, rectangle}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Helper: If n = 3k + 1 with k ≥ 1, and j ≥ 3, then rectangle n (3(j-1)) is tileable.
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_rectMinusCorner_mod1_jk_ge}
   \lean{tileable_rectMinusCorner_mod1_jk_ge}
-  \uses{LTileable, LTileable_swap_rectangleMinusCorner, LTileable_vertical_union_rect_minus, rectangle,
-        rectangleMinusCorner, tileable_4x_rectMinus_3kplus1, tileable_rect_mod1_by_mult3}
+  \uses{tileable_4x_rectMinus_3kplus1, rect_tileable_iff}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  If `n = 3k+1` and `m = 3j+1` with `j ≥ 3` and `k ≥ 1`, then
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_rectMinusCorner_mod1_width4}
   \lean{tileable_rectMinusCorner_mod1_width4}
-  \uses{LTileable, LTileable_horizontal_union_rect_minus, rect_tileable_iff, rectangle,
-        rectangleMinusCorner, tileable_4x4_minus, translateRegion}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Helper: If n = 3(k-1) + 4 with k-1 ≥ 2, then rectangleMinusCorner n 4 is tileable.
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_rectMinusCorner_mod1_recurrence_k_ge3}
   \lean{tileable_rectMinusCorner_mod1_recurrence_k_ge3}
-  \uses{LTileable, LTileable_horizontal_union_rect_minus, RectTileableConditions, rect_tileable_iff,
-        rectangle, rectangleMinusCorner, tileable_4x_rectMinus_3kplus1}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Helper: The recurrence case when k ≥ 3 for the mod 3 = 1 case.
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_rectMinusCorner_mod1_case}
   \lean{tileable_rectMinusCorner_mod1_case}
-  \uses{LTileable, LTileable_swap_rectangleMinusCorner, rectangleMinusCorner, tileable_4x4_minus,
-        tileable_4x7_minus, tileable_7x7_minus, tileable_rectMinusCorner_mod1_jk_ge, tileable_rectMinusCorner_mod1_recurrence_k_ge3}
+  \uses{tileable_rectMinusCorner_mod1_jk_ge, tileable_4x_rectMinus_3kplus1, tileable_7x7_minus}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The mod 3 = 1 case: if n ≡ m ≡ 1 (mod 3), then rectangleMinusCorner n m is tileable.
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_rectMinusCorner_mod2_case}
   \lean{tileable_rectMinusCorner_mod2_case}
-  \uses{LTileable, LTileable_swap_rectangleMinusCorner, rectangle, rectangleMinusCorner,
-        tileable_2x2_minus, tileable_3kplus2_x2_minus, tileable_5x2_minus, tileable_5x5_minus,
-        tileable_5x_3kplus2_minus, tileable_rectMinusCorner_mod2_jk_ge2}
+  \uses{tileable_rectMinusCorner_mod2_jk_ge2, tileable_3kplus2_x2_minus, tileable_5x_3kplus2_minus}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The mod 3 = 2 case: if n ≡ m ≡ 2 (mod 3), then rectangleMinusCorner n m is tileable.
 \end{theorem}
 
 \begin{theorem}
   \label{rectMinusCorner_tileable_of_area_m_le_n}
   \lean{rectMinusCorner_tileable_of_area_m_le_n}
-  \uses{LTileable, mod3_both_one_or_two_of_area_mod3_zero, rectangle, rectangleMinusCorner,
-        tileable_rectMinusCorner_mod1_case, tileable_rectMinusCorner_mod2_case}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Sufficiency direction assuming `m ≤ n`
 \end{theorem}
 
 \begin{theorem}
   \label{rectMinusCorner_tileable_iff}
   \lean{rectMinusCorner_tileable_iff}
-  \uses{LTileable, LTileable_swap_rectangleMinusCorner, rectMinusCorner_tileable_area_div_3, rectMinusCorner_tileable_of_area_m_le_n,
-        rectangle, rectangleMinus2Corner, rectangleMinusCorner}
+  \uses{rect_tileable_iff, tileable_rectMinusCorner_mod2_case, tileable_rectMinusCorner_mod1_case, rectMinusCorner_tileable_area_div_3}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  **Ash–Golomb Theorem 2 (statement)** (called the **DOG-EARED RECTANGLE THEOREM**
 \end{theorem}
 
 \begin{definition}
   \label{lTrominoCellsAt}
   \lean{lTrominoCellsAt}
-  \uses{Cell, PlacedTile, PlacedTile_cells, lTrominoSet}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The cells of an L-tromino placed at rotation `r` and translation `(tx, ty)`.
 \end{definition}
 
 \begin{definition}
   \label{singleLTrominoTiling}
   \lean{singleLTrominoTiling}
-  \uses{TileSet, lTrominoSet}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A tiling consisting of a single L-tromino.
 \end{definition}
 
 \begin{theorem}
   \label{singleLTromino_valid}
   \lean{singleLTromino_valid}
-  \uses{TileSet, Valid, cellsAt, coveredCells,
-        lTrominoCellsAt, singleLTrominoTiling}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  A single L-tromino tiles its own cells.
 \end{theorem}
 
 \begin{theorem}
   \label{LTileable_single_lTromino}
   \lean{LTileable_single_lTromino}
-  \uses{LTileable, lTrominoCellsAt, singleLTrominoTiling, singleLTromino_valid}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Any single L-tromino region is L-tileable.
 \end{theorem}
 
 \begin{definition}
   \label{topRightLTromino}
   \lean{topRightLTromino}
-  \uses{Cell, lTrominoCellsAt}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The L-tromino cells for the top-right region in the decomposition.
 \end{definition}
 
 \begin{theorem}
   \label{LTileable_topRightLTromino}
   \lean{LTileable_topRightLTromino}
-  \uses{LTileable, LTileable_single_lTromino, rectangle, rectangleMinus2Corner,
-        topRightLTromino}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The L-tromino at the top-right is L-tileable.
 \end{theorem}
 
 \section{RExp Representations for Decomposition}
@@ -1309,45 +1125,38 @@
 \begin{definition}
   \label{rectangleMinus2Corner_rexp}
   \lean{rectangleMinus2Corner_rexp}
-  \uses{RExp_r, topRightLTromino}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  RExp representation of `rectangleMinus2Corner n m`.
 \end{definition}
 
 \begin{definition}
   \label{topRightLTromino_rexp}
   \lean{topRightLTromino_rexp}
-  \uses{RExp_r, rectangle, translateRegion}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  RExp representation of `topRightLTromino j k`.
 \end{definition}
 
 \begin{definition}
   \label{translateRectangle_rexp}
   \lean{translateRectangle_rexp}
-  \uses{RExp_r}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  RExp representation of `translateRegion (rectangle (3j) 2) (0, 3k-1)`.
 \end{definition}
 
 \begin{theorem}
   \label{lTromino_rotation2_cells}
   \lean{lTromino_rotation2_cells}
-  \uses{lTromino, rotateProto}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Helper lemma: The L-tromino at rotation 2 (180°) has cells (0,0), (0,-1), (-1,0)
 \end{theorem}
 
 \begin{theorem}
   \label{topRightLTromino_rexp_eval}
   \lean{topRightLTromino_rexp_eval}
-  \uses{Cell, PlacedTile, PlacedTile_cells, RExp_eval,
-        lTrominoCellsAt, lTrominoSet, lTromino_rotation2_cells, topRightLTromino,
-        topRightLTromino_rexp, translateCell}
   \leanok
   \proven
   \((topRightLTromino\_rexp\_eval)\)
@@ -1356,9 +1165,6 @@
 \begin{theorem}
   \label{rectangleMinus2Corner_rexp_eval}
   \lean{rectangleMinus2Corner_rexp_eval}
-  \uses{Cell, RExp_eval, cornerTR, cornerTR2,
-        mem_rectangle, rectangle, rectangleMinus2Corner, rectangleMinus2Corner_rexp,
-        rectangleMinusCorner, topRightLTromino, translateRegion}
   \leanok
   \proven
   \((rectangleMinus2Corner\_rexp\_eval)\)
@@ -1367,85 +1173,63 @@
 \begin{theorem}
   \label{rectangleMinus2Corner_decomp_rexp}
   \lean{rectangleMinus2Corner_decomp_rexp}
-  \uses{RExp_eval, rectangle, rectangleMinus2Corner, rectangleMinus2Corner_rexp,
-        rectangleMinusCorner, rectangleMinusCorner_rexp, topRightLTromino, topRightLTromino_rexp,
-        translateRectangle_rexp, translateRegion}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The decomposition of `rectangleMinus2Corner (3j+2) (3k+1)` into three parts (as RExp):
 \end{theorem}
 
 \begin{theorem}
   \label{rectangleMinus2Corner_decomp}
   \lean{rectangleMinus2Corner_decomp}
-  \uses{Cell, RExp_eval, rect, rectangle,
-        rectangleMinus2Corner, rectangleMinus2Corner_decomp_rexp, rectangleMinus2Corner_rexp, rectangleMinus2Corner_rexp_eval,
-        rectangleMinusCorner, rectangleMinusCorner_rexp, rectangleMinusCorner_rexp_eval, rectangle_eq_rect_coe,
-        topRightLTromino, topRightLTromino_rexp, topRightLTromino_rexp_eval, translateRectangle_rexp,
-        translateRegion, translateRegion_eq_translate_coe}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The decomposition of `rectangleMinus2Corner (3j+2) (3k+1)` into three parts:
 \end{theorem}
 
 \begin{theorem}
   \label{rectangleMinus2Corner_decomp_disjoint_rexp_1}
   \lean{rectangleMinus2Corner_decomp_disjoint_rexp_1}
-  \uses{RExp_eval, rectangleMinusCorner, rectangleMinusCorner_rexp, topRightLTromino,
-        translateRectangle_rexp}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  First disjointness (simple version using rexp\_omega): rectangleMinusCorner and
 \end{theorem}
 
 \begin{theorem}
   \label{rectangleMinus2Corner_decomp_disjoint_rexp_2}
   \lean{rectangleMinus2Corner_decomp_disjoint_rexp_2}
-  \uses{RExp_eval, rect, rectangleMinusCorner, rectangleMinusCorner_rexp,
-        topRightLTromino, topRightLTromino_rexp}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Second disjointness: rectangleMinusCorner and topRightLTromino don't overlap.
 \end{theorem}
 
 \begin{theorem}
   \label{rectangleMinus2Corner_decomp_disjoint_rexp_3}
   \lean{rectangleMinus2Corner_decomp_disjoint_rexp_3}
-  \uses{RExp_eval, topRightLTromino, topRightLTromino_rexp, translateRectangle_rexp}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  Third disjointness: translateRectangle and topRightLTromino don't overlap.
 \end{theorem}
 
 \begin{theorem}
   \label{rectangleMinus2Corner_decomp_disjoint_rexp}
   \lean{rectangleMinus2Corner_decomp_disjoint_rexp}
-  \uses{RExp_eval, rectangleMinus2Corner_decomp_disjoint_rexp_1, rectangleMinus2Corner_decomp_disjoint_rexp_2, rectangleMinus2Corner_decomp_disjoint_rexp_3,
-        rectangleMinusCorner_rexp, topRightLTromino_rexp, translateRectangle_rexp}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The three parts in the decomposition are pairwise disjoint (RExp version).
 \end{theorem}
 
 \begin{theorem}
   \label{rectangleMinus2Corner_decomp_disjoint}
   \lean{rectangleMinus2Corner_decomp_disjoint}
-  \uses{Cell, RExp_eval, rect, rectangle,
-        rectangleMinus2Corner_decomp_disjoint_rexp, rectangleMinusCorner, rectangleMinusCorner_rexp, rectangleMinusCorner_rexp_eval,
-        rectangle_eq_rect_coe, topRightLTromino, topRightLTromino_rexp, topRightLTromino_rexp_eval,
-        translateRectangle_rexp, translateRegion, translateRegion_eq_translate_coe}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  The three parts in the decomposition are pairwise disjoint.
 \end{theorem}
 
 \begin{theorem}
   \label{tileable_rectangleMinus2Corner_3jplus2_3kplus1}
   \lean{tileable_rectangleMinus2Corner_3jplus2_3kplus1}
-  \uses{LTileable, LTileable_single_lTromino, LTileable_translate, Tileable_union,
-        lTrominoSet, rectMinusCorner_tileable_iff, rectangle, rectangleMinus2Corner,
-        rectangleMinus2Corner_decomp, rectangleMinus2Corner_decomp_disjoint, rectangleMinusCorner, tileable_mult3_x2,
-        topRightLTromino, translateRegion}
+  \uses{rect_tileable_iff, rectMinusCorner_tileable_iff, LTileable_topRightLTromino}
   \leanok
   \proven
   \((tileable\_rectangleMinus2Corner\_3jplus2\_3kplus1)\)
@@ -1454,7 +1238,6 @@
 \begin{definition}
   \label{rotateRegion90}
   \lean{rotateRegion90}
-  \uses{Region, rotateCell90}
   \leanok
   \proven
   \((rotateRegion90)\)
@@ -1463,7 +1246,6 @@
 \begin{theorem}
   \label{rotateCell90_rotateCell}
   \lean{rotateCell90_rotateCell}
-  \uses{Cell, rotateCell, rotateCell90}
   \leanok
   \proven
   \((rotateCell90\_rotateCell)\)
@@ -1472,8 +1254,6 @@
 \begin{theorem}
   \label{rotateProto_rotateCell90}
   \lean{rotateProto_rotateCell90}
-  \uses{lTromino, rotateCell, rotateCell90, rotateCell90_rotateCell,
-        rotateProto}
   \leanok
   \proven
   \((rotateProto\_rotateCell90)\)
@@ -1482,7 +1262,6 @@
 \begin{theorem}
   \label{rotateCell90_translateCell}
   \lean{rotateCell90_translateCell}
-  \uses{Cell, rotateCell90, translateCell}
   \leanok
   \proven
   \((rotateCell90\_translateCell)\)
@@ -1491,10 +1270,6 @@
 \begin{theorem}
   \label{LTileable_rotate90}
   \lean{LTileable_rotate90}
-  \uses{LTileable, PlacedTile, PlacedTile_cells, Region,
-        TileSet, cellsAt, coveredCells, lTromino,
-        lTrominoSet, rotateCell90, rotateCell90_translateCell, rotateProto,
-        rotateProto_rotateCell90, rotateRegion90, translateCell}
   \leanok
   \proven
   \((LTileable\_rotate90)\)
@@ -1503,7 +1278,6 @@
 \begin{definition}
   \label{piece1_rexp}
   \lean{piece1_rexp}
-  \uses{RExp_r}
   \leanok
   \proven
   \((piece1\_rexp)\)
@@ -1512,7 +1286,6 @@
 \begin{definition}
   \label{piece2_rexp}
   \lean{piece2_rexp}
-  \uses{RExp_r}
   \leanok
   \proven
   \((piece2\_rexp)\)
@@ -1521,7 +1294,6 @@
 \begin{definition}
   \label{piece1}
   \lean{piece1}
-  \uses{Cell, lTrominoCellsAt}
   \leanok
   \proven
   \((piece1)\)
@@ -1530,7 +1302,6 @@
 \begin{definition}
   \label{piece2}
   \lean{piece2}
-  \uses{Cell, rectangle}
   \leanok
   \proven
   \((piece2)\)
@@ -1539,9 +1310,6 @@
 \begin{theorem}
   \label{piece1_val_rexp}
   \lean{piece1_val_rexp}
-  \uses{PlacedTile, PlacedTile_cells, lTromino, lTrominoCellsAt,
-        lTrominoSet, piece1, piece1_rexp, rotateCell,
-        rotateCell90, rotateProto, translateCell}
   \leanok
   \proven
   \((piece1\_val\_rexp)\)
@@ -1550,7 +1318,6 @@
 \begin{theorem}
   \label{piece2_val_rexp}
   \lean{piece2_val_rexp}
-  \uses{piece2, piece2_rexp, rectangle}
   \leanok
   \proven
   \((piece2\_val\_rexp)\)
@@ -1559,8 +1326,6 @@
 \begin{theorem}
   \label{piece2_eq_rotate_rectangleMinusCorner}
   \lean{piece2_eq_rotate_rectangleMinusCorner}
-  \uses{cornerTR, mem_rectangle, piece2, rectangleMinusCorner,
-        rotateCell90, rotateRegion90, translateCell, translateRegion}
   \leanok
   \proven
   \((piece2\_eq\_rotate\_rectangleMinusCorner)\)
@@ -1569,8 +1334,6 @@
 \begin{theorem}
   \label{tileable_piece2}
   \lean{tileable_piece2}
-  \uses{LTileable, LTileable_rotate90, LTileable_translate, piece2,
-        piece2_eq_rotate_rectangleMinusCorner, rectMinusCorner_tileable_iff}
   \leanok
   \proven
   \((tileable\_piece2)\)
@@ -1579,10 +1342,7 @@
 \begin{theorem}
   \label{tileable_rectangleMinus2Corner_4_3kplus2}
   \lean{tileable_rectangleMinus2Corner_4_3kplus2}
-  \uses{Cell, LTileable, LTileable_single_lTromino, Tileable_union,
-        lTrominoSet, piece1, piece1_rexp, piece1_val_rexp,
-        piece2, piece2_rexp, piece2_val_rexp, rectangleMinus2Corner,
-        rectangleMinus2Corner_rexp, rectangleMinus2Corner_rexp_eval, tileable_piece2}
+  \uses{rectMinusCorner_tileable_iff}
   \leanok
   \proven
   \((tileable\_rectangleMinus2Corner\_4\_3kplus2)\)
@@ -1591,7 +1351,6 @@
 \begin{definition}
   \label{left_piece_j}
   \lean{left_piece_j}
-  \uses{Cell, rectangle}
   \leanok
   \proven
   \((left\_piece\_j)\)
@@ -1600,7 +1359,6 @@
 \begin{definition}
   \label{right_piece_j}
   \lean{right_piece_j}
-  \uses{Cell, rectangleMinus2Corner, translateRegion}
   \leanok
   \proven
   \((right\_piece\_j)\)
@@ -1609,9 +1367,6 @@
 \begin{theorem}
   \label{decomp_j}
   \lean{decomp_j}
-  \uses{Cell, RExp_r, left_piece_j, rectangle,
-        rectangleMinus2Corner, rectangleMinus2Corner_rexp, rectangleMinus2Corner_rexp_eval, right_piece_j,
-        translate, translateCell, translateRegion}
   \leanok
   \proven
   \((decomp\_j)\)
@@ -1620,8 +1375,6 @@
 \begin{theorem}
   \label{decomp_j_disj}
   \lean{decomp_j_disj}
-  \uses{left_piece_j, rectangle, rectangleMinus2Corner_rexp, rectangleMinus2Corner_rexp_eval,
-        right_piece_j, translateCell, translateRegion}
   \leanok
   \proven
   \((decomp\_j\_disj)\)
@@ -1630,7 +1383,6 @@
 \begin{definition}
   \label{pieceA}
   \lean{pieceA}
-  \uses{Cell, rectangleMinus2Corner, swapRegion}
   \leanok
   \proven
   \((pieceA)\)
@@ -1639,7 +1391,6 @@
 \begin{definition}
   \label{pieceA_rexp}
   \lean{pieceA_rexp}
-  \uses{RExp_r}
   \leanok
   \proven
   \((pieceA\_rexp)\)
@@ -1648,8 +1399,6 @@
 \begin{theorem}
   \label{pieceA_val_rexp}
   \lean{pieceA_val_rexp}
-  \uses{Cell, cornerTR, cornerTR2, mem_rectangle,
-        pieceA, pieceA_rexp, rectangleMinus2Corner, swapRegion}
   \leanok
   \proven
   \((pieceA\_val\_rexp)\)
@@ -1658,7 +1407,6 @@
 \begin{definition}
   \label{pieceB}
   \lean{pieceB}
-  \uses{Cell, lTrominoCellsAt}
   \leanok
   \proven
   \((pieceB)\)
@@ -1667,7 +1415,6 @@
 \begin{definition}
   \label{pieceB_rexp}
   \lean{pieceB_rexp}
-  \uses{RExp_r}
   \leanok
   \proven
   \((pieceB\_rexp)\)
@@ -1676,9 +1423,6 @@
 \begin{theorem}
   \label{pieceB_val_rexp}
   \lean{pieceB_val_rexp}
-  \uses{Cell, PlacedTile, PlacedTile_cells, lTromino,
-        lTrominoCellsAt, lTrominoSet, pieceB, pieceB_rexp,
-        rotateCell, rotateCell90, rotateProto, translateCell}
   \leanok
   \proven
   \((pieceB\_val\_rexp)\)
@@ -1687,7 +1431,6 @@
 \begin{definition}
   \label{pieceC}
   \lean{pieceC}
-  \uses{Cell, rectangle, translateRegion}
   \leanok
   \proven
   \((pieceC)\)
@@ -1696,7 +1439,6 @@
 \begin{definition}
   \label{pieceC_rexp}
   \lean{pieceC_rexp}
-  \uses{RExp_r}
   \leanok
   \proven
   \((pieceC\_rexp)\)
@@ -1705,8 +1447,6 @@
 \begin{theorem}
   \label{pieceC_val_rexp}
   \lean{pieceC_val_rexp}
-  \uses{Cell, pieceC, pieceC_rexp, rect,
-        rectangle, translateCell, translateRegion}
   \leanok
   \proven
   \((pieceC\_val\_rexp)\)
@@ -1715,8 +1455,6 @@
 \begin{theorem}
   \label{decomp_7_rexp}
   \lean{decomp_7_rexp}
-  \uses{pieceA_rexp, pieceB_rexp, pieceC_rexp, rect,
-        rectangleMinus2Corner_rexp}
   \leanok
   \proven
   \((decomp\_7\_rexp)\)
@@ -1725,9 +1463,6 @@
 \begin{theorem}
   \label{decomp_7}
   \lean{decomp_7}
-  \uses{decomp_7_rexp, pieceA, pieceA_val_rexp, pieceB,
-        pieceB_val_rexp, pieceC, pieceC_val_rexp, rectangleMinus2Corner,
-        rectangleMinus2Corner_rexp_eval}
   \leanok
   \proven
   \((decomp\_7)\)
@@ -1736,8 +1471,6 @@
 \begin{theorem}
   \label{decomp_7_disj1}
   \lean{decomp_7_disj1}
-  \uses{pieceA, pieceA_rexp, pieceA_val_rexp, pieceB,
-        pieceB_rexp, pieceB_val_rexp, rect}
   \leanok
   \proven
   \((decomp\_7\_disj1)\)
@@ -1746,9 +1479,6 @@
 \begin{theorem}
   \label{decomp_7_disj2}
   \lean{decomp_7_disj2}
-  \uses{pieceA, pieceA_rexp, pieceA_val_rexp, pieceB,
-        pieceB_rexp, pieceB_val_rexp, pieceC, pieceC_rexp,
-        pieceC_val_rexp, rect}
   \leanok
   \proven
   \((decomp\_7\_disj2)\)
@@ -1757,8 +1487,6 @@
 \begin{theorem}
   \label{tileable_pieceA}
   \lean{tileable_pieceA}
-  \uses{LTileable, LTileable_swap, pieceA, rectangleMinus2Corner,
-        tileable_rectangleMinus2Corner_3jplus2_3kplus1}
   \leanok
   \proven
   \((tileable\_pieceA)\)
@@ -1767,7 +1495,6 @@
 \begin{theorem}
   \label{tileable_pieceB}
   \lean{tileable_pieceB}
-  \uses{LTileable, LTileable_single_lTromino, pieceB}
   \leanok
   \proven
   \((tileable\_pieceB)\)
@@ -1776,7 +1503,6 @@
 \begin{theorem}
   \label{tileable_pieceC}
   \lean{tileable_pieceC}
-  \uses{LTileable, LTileable_translate, pieceC, rect_tileable_iff}
   \leanok
   \proven
   \((tileable\_pieceC)\)
@@ -1785,12 +1511,7 @@
 \begin{theorem}
   \label{tileable_rectangleMinus2Corner_3jplus1_3kplus2}
   \lean{tileable_rectangleMinus2Corner_3jplus1_3kplus2}
-  \uses{LTileable, LTileable_translate, Tileable_union, decomp_7,
-        decomp_7_disj1, decomp_7_disj2, decomp_j, decomp_j_disj,
-        lTrominoSet, left_piece_j, pieceA, pieceB,
-        pieceC, rect_tileable_iff, rectangle, rectangleMinus2Corner,
-        right_piece_j, tileable_pieceA, tileable_pieceB, tileable_pieceC,
-        tileable_rectangleMinus2Corner_4_3kplus2, translateRegion}
+  \uses{tileable_rectangleMinus2Corner_4_3kplus2, tileable_rectangleMinus2Corner_3jplus2_3kplus1}
   \leanok
   \proven
   \((tileable\_rectangleMinus2Corner\_3jplus1\_3kplus2)\)
@@ -1799,11 +1520,10 @@
 \begin{theorem}
   \label{rectMinus2Corner_tileable_of_area_mod2}
   \lean{rectMinus2Corner_tileable_of_area_mod2}
-  \uses{LTileable, mod3_one_two_or_two_one_of_area_mod3_two, rectangleMinus2Corner, tileable_rectangleMinus2Corner_3jplus1_3kplus2,
-        tileable_rectangleMinus2Corner_3jplus2_3kplus1}
+  \uses{rectMinusCorner_tileable_iff, tileable_rectangleMinus2Corner_3jplus2_3kplus1, tileable_rectangleMinus2Corner_3jplus1_3kplus2}
   \leanok
   \proven
-  The L-tromino shape, anchored at origin -/ def lTromino : Prototile := ⟨[(0, 0), (0, 1), (1, 0)], by decide⟩ /-- A protoset containing just the L-tromino -/ def lTrominoSet : Protoset Unit := ⟨fun \_ => lTromino⟩ /- \#\# Utility Lemmas -/ /-- Each L-tromino covers exactly 3 cells -/ theorem lTromino...
+  **Two-square deficient rectangle theorem (statement)**:
 \end{theorem}
 
 \chapter{Rectangle and Omega Infrastructure}
@@ -1811,7 +1531,6 @@
 \begin{theorem}
   \label{example}
   \lean{example}
-  \uses{Cell, rect, rectangle}
   \leanok
   \proven
   \((example)\)
@@ -1822,38 +1541,33 @@
 \begin{definition}
   \label{rect}
   \lean{rect}
-  \uses{Cell}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`.
+  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that
 \end{definition}
 
 \begin{definition}
   \label{translate}
   \lean{translate}
-  \uses{Cell, TileSet}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Translate a tileset by an offset
 \end{definition}
 
 \begin{definition}
   \label{rotate}
   \lean{rotate}
-  \uses{Cell, rotateCell}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Rotation of a set of cells by a multiple of 90° counterclockwise around the origin.
 \end{definition}
 
 \begin{definition}
   \label{reflect}
   \lean{reflect}
-  \uses{Cell, rect, rotate, rotateCell,
-        swapCell, translate}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Reflection of a set of cells: swaps x and y coordinates (reflection across line y=x).
 \end{definition}
 
 \section{Simplification Lemmas}
@@ -1861,11 +1575,9 @@
 \begin{theorem}
   \label{swapCell_def}
   \lean{swapCell_def}
-  \uses{Cell, rectangle, rotateCell, rotateCell90,
-        swapCell}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Simplification lemma for swapCell. Not marked @[simp] to avoid breaking other proofs.
 \end{theorem}
 
 \section{Finite Boxes}
@@ -1873,25 +1585,22 @@
 \begin{definition}
   \label{boxFinset}
   \lean{boxFinset}
-  \uses{Cell, rect}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Finite set representation of a half-open rectangle using `Finset.Ico`.
 \end{definition}
 
 \begin{theorem}
   \label{card_boxFinset}
   \lean{card_boxFinset}
-  \uses{boxFinset, example}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Cardinality of `boxFinset`.
 \end{theorem}
 
 \begin{theorem}
   \label{rect_eq_boxFinset_coe}
   \lean{rect_eq_boxFinset_coe}
-  \uses{Cell, boxFinset, rect}
   \leanok
   \proven
   \((rect\_eq\_boxFinset\_coe)\)
@@ -1900,7 +1609,6 @@
 \begin{definition}
   \label{rectFinset}
   \lean{rectFinset}
-  \uses{Cell, boxFinset}
   \leanok
   \proven
   \((rectFinset)\)
@@ -1909,7 +1617,6 @@
 \begin{theorem}
   \label{card_rectFinset}
   \lean{card_rectFinset}
-  \uses{card_boxFinset, rectFinset}
   \leanok
   \proven
   \((card\_rectFinset)\)
@@ -1920,16 +1627,14 @@
 \begin{theorem}
   \label{rect_encard}
   \lean{rect_encard}
-  \uses{boxFinset, rect, rect_eq_boxFinset_coe}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  \((rect\_encard)\)
 \end{theorem}
 
 \begin{theorem}
   \label{rect_encard_formula}
   \lean{rect_encard_formula}
-  \uses{card_boxFinset, rect, rect_encard}
   \leanok
   \proven
   \((rect\_encard\_formula)\)
@@ -1938,84 +1643,73 @@
 \begin{theorem}
   \label{rect_finite}
   \lean{rect_finite}
-  \uses{rect, rect_eq_boxFinset_coe, rectangle}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Rectangles are finite sets.
 \end{theorem}
 
 \begin{theorem}
   \label{rect_ncard}
   \lean{rect_ncard}
-  \uses{Cell, card_boxFinset, rect, rect_eq_boxFinset_coe}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Cardinality of a half-open rectangle.
 \end{theorem}
 
 \begin{theorem}
   \label{union_ncard}
   \lean{union_ncard}
-  \uses{Cell}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Cardinality of a union using inclusion-exclusion.
 \end{theorem}
 
 \begin{theorem}
   \label{union_ncard_disjoint}
   \lean{union_ncard_disjoint}
-  \uses{Cell, union_ncard}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Cardinality of a union of disjoint sets.
 \end{theorem}
 
 \begin{theorem}
   \label{diff_ncard}
   \lean{diff_ncard}
-  \uses{Cell, union_ncard_disjoint}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Cardinality of set difference.
 \end{theorem}
 
 \begin{theorem}
   \label{diff_ncard_disjoint}
   \lean{diff_ncard_disjoint}
-  \uses{Cell, diff_ncard}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Cardinality of set difference when the subtracted set is disjoint.
 \end{theorem}
 
 \begin{theorem}
   \label{translate_ncard}
   \lean{translate_ncard}
-  \uses{Cell, translate, translateCell, translateCell_injective}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Translation preserves cardinality (translation is a bijection).
 \end{theorem}
 
 \begin{theorem}
   \label{rotate_ncard}
   \lean{rotate_ncard}
-  \uses{Cell, rotate, rotateCell, rotateCell_injective}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Rotation preserves cardinality (rotation is a bijection).
 \end{theorem}
 
 \begin{theorem}
   \label{reflect_ncard}
   \lean{reflect_ncard}
-  \uses{Cell, rect, rectangle, reflect,
-        rotate, swapCell, swapCell_def, swapCell_injective,
-        swapCell_involutive}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Reflection preserves cardinality (reflection is a bijection).
 \end{theorem}
 
 \section{Automation Tactic}
@@ -2025,21 +1719,17 @@
 \begin{definition}
   \label{RExp_eval}
   \lean{RExp.eval}
-  \uses{Cell, rect, reflect, rotate,
-        translate}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Semantics: evaluate a rectangle expression to a set of cells.
 \end{definition}
 
 \begin{definition}
   \label{RExp_r}
   \lean{RExp.r}
-  \uses{Cell, RExp_eval, rect, rectangle,
-        reflect, rotate, translate}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Convenient constructor for rectangles.
 \end{definition}
 
 \section{RExp Simplification Lemmas}
@@ -2049,87 +1739,73 @@
 \begin{theorem}
   \label{RExp_ncard_rect}
   \lean{RExp.ncard_rect}
-  \uses{RExp_eval, rect, rect_ncard}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Cardinality of a rectangle RExp.
 \end{theorem}
 
 \begin{theorem}
   \label{RExp_ncard_union}
   \lean{RExp.ncard_union}
-  \uses{RExp_eval, union_ncard}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Cardinality of a union RExp using inclusion-exclusion.
 \end{theorem}
 
 \begin{theorem}
   \label{RExp_ncard_union_disjoint}
   \lean{RExp.ncard_union_disjoint}
-  \uses{RExp_eval, union_ncard_disjoint}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Cardinality of a union of disjoint RExp expressions.
 \end{theorem}
 
 \begin{theorem}
   \label{RExp_ncard_inter}
   \lean{RExp.ncard_inter}
-  \uses{RExp_eval}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Cardinality of an intersection RExp.
 \end{theorem}
 
 \begin{theorem}
   \label{RExp_ncard_diff}
   \lean{RExp.ncard_diff}
-  \uses{RExp_eval, diff_ncard}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Cardinality of a difference RExp.
 \end{theorem}
 
 \begin{theorem}
   \label{RExp_ncard_diff_disjoint}
   \lean{RExp.ncard_diff_disjoint}
-  \uses{RExp_eval, diff_ncard_disjoint}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Cardinality of a difference RExp when sets are disjoint.
 \end{theorem}
 
 \begin{theorem}
   \label{RExp_ncard_shift}
   \lean{RExp.ncard_shift}
-  \uses{RExp_eval, translate_ncard}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Translation preserves cardinality of RExp.
 \end{theorem}
 
 \begin{theorem}
   \label{RExp_ncard_rotate}
   \lean{RExp.ncard_rotate}
-  \uses{RExp_eval, rotate, rotate_ncard}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Rotation preserves cardinality of RExp.
 \end{theorem}
 
 \begin{theorem}
   \label{RExp_ncard_reflect}
   \lean{RExp.ncard_reflect}
-  \uses{Cell, RExp_eval, RExp_ncard_diff, RExp_ncard_diff_disjoint,
-        RExp_ncard_inter, RExp_ncard_rect, RExp_ncard_rotate, RExp_ncard_shift,
-        RExp_ncard_union, RExp_ncard_union_disjoint, RExp_r, diff_ncard,
-        diff_ncard_disjoint, example, rect, rect_finite,
-        rect_ncard, rectangle, reflect, reflect_ncard,
-        swapCell_def, union_ncard, union_ncard_disjoint}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Reflection preserves cardinality of RExp.
 \end{theorem}
 
 \section{RExp Automation Tactic}
@@ -2141,21 +1817,17 @@
 \begin{theorem}
   \label{rect_left_right_disjoint}
   \lean{rect_left_right_disjoint}
-  \uses{rect}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Disjointness: the left and right halves of a rectangle are disjoint
 \end{theorem}
 
 \begin{theorem}
   \label{translate_rect}
   \lean{translate_rect}
-  \uses{RExp_eval, RExp_ncard_reflect, RExp_ncard_rotate, RExp_ncard_shift,
-        RExp_r, example, rect, rect_finite,
-        rect_ncard, rectangle, rectangleMinus2Corner_decomp_rexp, translate}
   \leanok
   \proven
-  Half-open rectangle: `rect x0 y0 x1 y1` contains all cells `(x, y)` such that `x0 ≤ x < x1` and `y0 ≤ y < y1`. -/ def rect (x0 y0 x1 y1 : ℤ) : Set Cell := \{p : Cell | x0 ≤ p.1 ∧ p.1 < x1 ∧ y0 ≤ p.2 ∧ p.2 < y1\} /-- Translation of a set of cells by `(dx, dy)` -/ def translate (dx dy : ℤ) (s : Set C...
+  Translation preserves rectangles (up to shifting bounds).
 \end{theorem}
 
 \section{RExp Example Theorems}
@@ -2177,10 +1849,9 @@
 \begin{definition}
   \label{Region}
   \lean{Region}
-  \uses{Cell, Protoset, Prototile}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells
+  A region is a finite set of cells
 \end{definition}
 
 \section{Prototile and Protoset}
@@ -2188,16 +1859,14 @@
 \begin{definition}
   \label{Prototile}
   \lean{Prototile}
-  \uses{Cell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  A prototile is a polyomino shape (list of cells with no duplicates)
 \end{definition}
 
 \begin{theorem}
   \label{Prototile_coe_def}
   \lean{Prototile.coe_def}
-  \uses{Cell, Prototile}
   \leanok
   \proven
   \((Prototile.coe\_def)\)
@@ -2206,7 +1875,6 @@
 \begin{theorem}
   \label{Prototile_mem_coe}
   \lean{Prototile.mem_coe}
-  \uses{Cell, Prototile, Prototile_coe_def}
   \leanok
   \proven
   \((Prototile.mem\_coe)\)
@@ -2215,16 +1883,14 @@
 \begin{definition}
   \label{Prototile_card}
   \lean{Prototile.card}
-  \uses{Prototile}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Cardinality of a prototile
 \end{definition}
 
 \begin{theorem}
   \label{Prototile_card_eq}
   \lean{Prototile.card_eq}
-  \uses{Cell, Prototile, Prototile_card}
   \leanok
   \proven
   \((Prototile.card\_eq)\)
@@ -2233,10 +1899,9 @@
 \begin{definition}
   \label{Protoset}
   \lean{Protoset}
-  \uses{Prototile}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  A protoset is an indexed family of prototiles
 \end{definition}
 
 \section{Rotations}
@@ -2244,46 +1909,41 @@
 \begin{definition}
   \label{rotateCell90}
   \lean{rotateCell90}
-  \uses{Cell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Rotate a cell by 90° counterclockwise around the origin
 \end{definition}
 
 \begin{definition}
   \label{rotateCell}
   \lean{rotateCell}
-  \uses{Cell, rotateCell90}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Rotate a cell by a given number of 90° steps
 \end{definition}
 
 \begin{theorem}
   \label{rotateCell_injective}
   \lean{rotateCell_injective}
-  \uses{rotateCell, rotateCell90}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Rotation by any amount is injective
 \end{theorem}
 
 \begin{definition}
   \label{rotateProto}
   \lean{rotateProto}
-  \uses{Cell, Prototile, rotateCell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Rotate all cells in a prototile (returns `Finset` for compatibility)
 \end{definition}
 
 \begin{theorem}
   \label{rotateProto_card}
   \lean{rotateProto_card}
-  \uses{Prototile, rotateCell_injective, rotateProto}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Rotation preserves cardinality of a prototile
 \end{theorem}
 
 \section{Placed Tiles}
@@ -2291,121 +1951,105 @@
 \begin{definition}
   \label{PlacedTile}
   \lean{PlacedTile}
-  \uses{Cell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  A placed tile: prototile index + translation + rotation
 \end{definition}
 
 \begin{definition}
   \label{translateCell}
   \lean{translateCell}
-  \uses{Cell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Translate a cell by an offset
 \end{definition}
 
 \begin{theorem}
   \label{translateCell_injective}
   \lean{translateCell_injective}
-  \uses{Cell, translateCell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Translation is injective
 \end{theorem}
 
 \begin{definition}
   \label{translateRegion}
   \lean{translateRegion}
-  \uses{Cell, Region, translateCell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Translate a region by an offset
 \end{definition}
 
 \begin{theorem}
   \label{translateRegion_card}
   \lean{translateRegion_card}
-  \uses{Cell, Region, translateCell_injective, translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Translation preserves cardinality of a region
 \end{theorem}
 
 \begin{definition}
   \label{swapCell}
   \lean{swapCell}
-  \uses{Cell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Swap x and y coordinates
 \end{definition}
 
 \begin{theorem}
   \label{swapCell_involutive}
   \lean{swapCell_involutive}
-  \uses{swapCell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Swap is an involution
 \end{theorem}
 
 \begin{theorem}
   \label{swapCell_injective}
   \lean{swapCell_injective}
-  \uses{swapCell, swapCell_involutive}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Swap is injective
 \end{theorem}
 
 \begin{definition}
   \label{swapRegion}
   \lean{swapRegion}
-  \uses{Region, swapCell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Apply swap to a region
 \end{definition}
 
 \begin{definition}
   \label{PlacedTile_cells}
   \lean{PlacedTile.cells}
-  \uses{Cell, PlacedTile, Protoset, rotateProto,
-        translateCell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Get the cells covered by a placed tile
 \end{definition}
 
 \begin{definition}
   \label{PlacedTile_translate}
   \lean{PlacedTile.translate}
-  \uses{Cell, PlacedTile, translate}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Translate a placed tile by an offset
 \end{definition}
 
 \begin{theorem}
   \label{PlacedTile_translate_cells}
   \lean{PlacedTile.translate_cells}
-  \uses{Cell, PlacedTile, PlacedTile_cells, PlacedTile_translate,
-        Protoset, translate, translateCell, translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Translation of a placed tile translates its cells
 \end{theorem}
 
 \begin{theorem}
   \label{PlacedTile_cells_card}
   \lean{PlacedTile.cells_card}
-  \uses{PlacedTile, PlacedTile_cells, Protoset, TileSet,
-        rotateProto_card, translateCell_injective}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Placing a tile preserves the cardinality of the prototile
 \end{theorem}
 
 \section{TileSet: Indexed Family of Placed Tiles}
@@ -2413,133 +2057,113 @@
 \begin{definition}
   \label{TileSet}
   \lean{TileSet}
-  \uses{PlacedTile, Protoset}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  A `TileSet` is an indexed family of placed tiles
 \end{definition}
 
 \begin{definition}
   \label{cellsAt}
   \lean{cellsAt}
-  \uses{Cell, TileSet}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  The cells covered by a single tile in the tileset
 \end{definition}
 
 \begin{definition}
   \label{coveredCells}
   \lean{coveredCells}
-  \uses{Cell, TileSet, cellsAt}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  The union of all cells covered by the tileset (for finite index types)
 \end{definition}
 
 \begin{definition}
   \label{PairwiseDisjoint}
   \lean{PairwiseDisjoint}
-  \uses{TileSet, cellsAt}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Pairwise disjointness of tiles
 \end{definition}
 
 \begin{theorem}
   \label{card_coveredCells}
   \lean{card_coveredCells}
-  \uses{PairwiseDisjoint, TileSet, cellsAt, coveredCells}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  If tiles are pairwise disjoint, the total area is the sum of individual areas
 \end{theorem}
 
 \begin{definition}
   \label{Valid}
   \lean{Valid}
-  \uses{PairwiseDisjoint, Region, TileSet, coveredCells}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  A tileset is valid for a region if tiles are disjoint and exactly cover it
 \end{definition}
 
 \begin{definition}
   \label{instDecidablePairwiseDisjoint}
   \lean{instDecidablePairwiseDisjoint}
-  \uses{PairwiseDisjoint, TileSet, cellsAt}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Decidable pairwise disjointness for finite index types
 \end{definition}
 
 \begin{definition}
   \label{instDecidableValid}
   \lean{instDecidableValid}
-  \uses{PairwiseDisjoint, Region, TileSet, Valid,
-        coveredCells}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Decidable validity for finite index types
 \end{definition}
 
 \begin{theorem}
   \label{Valid_disjoint_tiles}
   \lean{Valid.disjoint_tiles}
-  \uses{Region, TileSet, Valid, cellsAt}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Tiles at different indices are disjoint
 \end{theorem}
 
 \begin{theorem}
   \label{Valid_tile_contained}
   \lean{Valid.tile_contained}
-  \uses{Region, TileSet, Valid, cellsAt,
-        coveredCells}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Every tile's cells are contained in the region
 \end{theorem}
 
 \begin{definition}
   \label{translate}
   \lean{translate}
-  \uses{Cell, TileSet}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Translate a tileset by an offset
 \end{definition}
 
 \begin{theorem}
   \label{translate_preserves_disjoint}
   \lean{translate_preserves_disjoint}
-  \uses{Cell, PairwiseDisjoint, PlacedTile, PlacedTile_translate_cells,
-        TileSet, cellsAt, translate, translateCell,
-        translateCell_injective, translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Translation of a tileset preserves disjointness
 \end{theorem}
 
 \begin{theorem}
   \label{translate_coveredCells}
   \lean{translate_coveredCells}
-  \uses{Cell, PlacedTile, PlacedTile_translate_cells, TileSet,
-        coveredCells, translate, translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Translation of a tileset translates coverage
 \end{theorem}
 
 \begin{theorem}
   \label{translate_preserves_valid}
   \lean{translate_preserves_valid}
-  \uses{Cell, Region, TileSet, Valid,
-        translate, translateRegion, translate_coveredCells, translate_preserves_disjoint}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Translation preserves validity
 \end{theorem}
 
 \section{General Tileability}
@@ -2547,67 +2171,57 @@
 \begin{definition}
   \label{Tileable}
   \lean{Tileable}
-  \uses{Protoset, Region, TileSet, Valid}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  A region is tileable by a protoset if there exists a valid tiling
 \end{definition}
 
 \begin{theorem}
   \label{empty_tileable}
   \lean{empty_tileable}
-  \uses{Protoset, TileSet, Tileable, coveredCells}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  The empty region is tileable by any protoset
 \end{theorem}
 
 \begin{theorem}
   \label{Tileable_translate}
   \lean{Tileable_translate}
-  \uses{Cell, Protoset, Region, Tileable,
-        translate, translateRegion, translate_preserves_valid}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  A translated tileable region is tileable by any protoset
 \end{theorem}
 
 \begin{theorem}
   \label{Tileable_union}
   \lean{Tileable_union}
-  \uses{Protoset, Region, TileSet, Tileable,
-        cellsAt, coveredCells}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  If two disjoint regions are both tileable, their union is tileable
 \end{theorem}
 
 \begin{theorem}
   \label{Tileable_biUnion}
   \lean{Tileable_biUnion}
-  \uses{Protoset, Region, Tileable, Tileable_union,
-        empty_tileable}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Finite union of pairwise-disjoint tileable regions is tileable.
 \end{theorem}
 
 \begin{theorem}
   \label{translateRegion_neg}
   \lean{translateRegion_neg}
-  \uses{Cell, Region, translateCell, translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Translating by offset and then by `-offset` gives the original region
 \end{theorem}
 
 \begin{theorem}
   \label{translateRegion_add}
   \lean{translateRegion_add}
-  \uses{Cell, Region, translateCell, translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Composition of translations on a region adds their offsets.
 \end{theorem}
 
 \begin{theorem}
@@ -2615,37 +2229,31 @@
   \lean{erase_union_finset}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Erasing a point from a finite union distributes over both sides.
 \end{theorem}
 
 \begin{theorem}
   \label{translateRegion_erase_point}
   \lean{translateRegion_erase_point}
-  \uses{Cell, Region, translateCell, translateCell_injective,
-        translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Erasing a translated point is the same as translating an erased region.
 \end{theorem}
 
 \begin{theorem}
   \label{Tileable_translate_iff}
   \lean{Tileable_translate_iff}
-  \uses{Cell, Protoset, Region, Tileable,
-        Tileable_translate, translateRegion, translateRegion_neg}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Tileability is preserved by translation (both directions)
 \end{theorem}
 
 \begin{theorem}
   \label{Tileable_of_translate_eq}
   \lean{Tileable_of_translate_eq}
-  \uses{Cell, Protoset, Region, TileSet,
-        Tileable, Tileable_translate_iff, translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  If `R = translateRegion S offset` and `R` is tileable, then `S` is tileable
 \end{theorem}
 
 \section{Helper for Creating TileSets}
@@ -2653,19 +2261,17 @@
 \begin{definition}
   \label{mkTileSet}
   \lean{mkTileSet}
-  \uses{PlacedTile, Protoset, TileSet}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Create a `TileSet` from a function
 \end{definition}
 
 \begin{definition}
   \label{mkPlacedTile}
   \lean{mkPlacedTile}
-  \uses{PlacedTile}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Create a placed tile
 \end{definition}
 
 \section{Generic Placement Enumeration}
@@ -2673,68 +2279,57 @@
 \begin{definition}
   \label{PlacedTile_containedIn}
   \lean{PlacedTile.containedIn}
-  \uses{PlacedTile, Protoset, Region}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  A placed tile is contained in a region if all its cells are in the region
 \end{definition}
 
 \begin{definition}
   \label{PlacedTile_coversCell}
   \lean{PlacedTile.coversCell}
-  \uses{Cell, PlacedTile, Protoset, rotateCell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  A placed tile covers a cell if the cell is in its cells
 \end{definition}
 
 \begin{definition}
   \label{allPlacementsCoveringProto}
   \lean{allPlacementsCoveringProto}
-  \uses{Cell, PlacedTile, Prototile, rotateCell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  All placements of a single prototile that cover a given target cell.
 \end{definition}
 
 \begin{definition}
   \label{allPlacementsCovering}
   \lean{allPlacementsCovering}
-  \uses{Cell, PlacedTile, Protoset, allPlacementsCoveringProto}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  All placements from a protoset that cover a given target cell
 \end{definition}
 
 \begin{theorem}
   \label{allPlacementsCoveringProto_covers}
   \lean{allPlacementsCoveringProto_covers}
-  \uses{Cell, PlacedTile, PlacedTile_cells, PlacedTile_coversCell,
-        Protoset, Prototile, Prototile_mem_coe, allPlacementsCoveringProto,
-        rotateCell, rotateProto, translateCell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Every placement produced by `allPlacementsCoveringProto`
 \end{theorem}
 
 \begin{theorem}
   \label{allPlacementsCoveringProto_complete}
   \lean{allPlacementsCoveringProto_complete}
-  \uses{Cell, PlacedTile, PlacedTile_cells, PlacedTile_coversCell,
-        Protoset, allPlacementsCoveringProto, rotateProto, translateCell}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  `allPlacementsCoveringProto` is complete: any placement with index `i`
 \end{theorem}
 
 \begin{definition}
   \label{placementsCoveringIn}
   \lean{placementsCoveringIn}
-  \uses{Cell, PlacedTile, Protoset, Region,
-        allPlacementsCovering}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  \((placementsCoveringIn)\)
 \end{definition}
 
 \section{Protoset Refinement}
@@ -2742,22 +2337,17 @@
 \begin{definition}
   \label{Refines}
   \lean{Refines}
-  \uses{Protoset, Tileable, rotateProto}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  `psA` refines `psB` if every rotated prototile of `psB` is tileable by `psA`.
 \end{definition}
 
 \begin{theorem}
   \label{Tileable_refine}
   \lean{Tileable_refine}
-  \uses{PlacedTile, PlacedTile_cells, Protoset, Refines,
-        Region, TileSet, Tileable, Tileable_biUnion,
-        Tileable_translate, cellsAt, coveredCells, rectangle,
-        rotateProto, translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  If `psA` refines `psB` and `psB` tiles `R`, then `psA` tiles `R`.
 \end{theorem}
 
 \section{Rectangle Definition and Tilings}
@@ -2765,28 +2355,25 @@
 \begin{definition}
   \label{rectangle}
   \lean{rectangle}
-  \uses{Region}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  An `n × m` rectangle as a finite set of cells
 \end{definition}
 
 \begin{theorem}
   \label{mem_rectangle}
   \lean{mem_rectangle}
-  \uses{Cell, rectangle}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Membership in a rectangle
 \end{theorem}
 
 \begin{theorem}
   \label{swap_rectangle}
   \lean{swap_rectangle}
-  \uses{rectangle, swapCell, swapRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  Swapping an `n × m` rectangle gives an `m × n` rectangle
 \end{theorem}
 
 \section{Rectangle Splitting and Combining}
@@ -2794,56 +2381,48 @@
 \begin{theorem}
   \label{rectangle_split_horizontal}
   \lean{rectangle_split_horizontal}
-  \uses{mem_rectangle, rectangle, translateCell, translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  A rectangle can be split horizontally
 \end{theorem}
 
 \begin{theorem}
   \label{rectangle_split_horizontal_disjoint}
   \lean{rectangle_split_horizontal_disjoint}
-  \uses{mem_rectangle, rectangle, translateCell, translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  The two parts of a horizontal split are disjoint
 \end{theorem}
 
 \begin{theorem}
   \label{rectangle_split_vertical}
   \lean{rectangle_split_vertical}
-  \uses{mem_rectangle, rectangle, translateCell, translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  A rectangle can be split vertically
 \end{theorem}
 
 \begin{theorem}
   \label{rectangle_split_vertical_disjoint}
   \lean{rectangle_split_vertical_disjoint}
-  \uses{mem_rectangle, rectangle, translateCell, translateRegion}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  The two parts of a vertical split are disjoint
 \end{theorem}
 
 \begin{theorem}
   \label{Tileable_horizontal_union}
   \lean{Tileable_horizontal_union}
-  \uses{Protoset, Tileable, Tileable_translate, Tileable_union,
-        rectangle, rectangle_split_horizontal, rectangle_split_horizontal_disjoint}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  If we can tile two horizontally adjacent rectangles, we can tile their union
 \end{theorem}
 
 \begin{theorem}
   \label{Tileable_vertical_union}
   \lean{Tileable_vertical_union}
-  \uses{Protoset, Tileable, Tileable_translate, Tileable_union,
-        rectangle, rectangle_split_vertical, rectangle_split_vertical_disjoint}
   \leanok
   \proven
-  A cell on the integer grid -/ abbrev Cell := ℤ × ℤ /-- A region is a finite set of cells -/ abbrev Region := Finset Cell /- \#\# Prototile and Protoset -/ /- A prototile is the "shape" of a tile, represented as a list of cells with no duplicates. This design allows both: * Computation: iterate over...
+  If we can tile two vertically adjacent rectangles, we can tile their union
 \end{theorem}
 

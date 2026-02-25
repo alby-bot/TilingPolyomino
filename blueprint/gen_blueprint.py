@@ -26,6 +26,16 @@ SKIP_NAMES = {
     "hello",   # Basic.lean placeholder
 }
 
+# Names to NEVER include in \uses{} -- they're ubiquitous infrastructure that
+# would create an explosion of edges connecting everything to everything.
+USES_BLOCKLIST = {
+    "Cell", "Region", "LTileable", "rectangle", "lTromino", "lTrominoSet",
+    "Prototile", "Protoset", "PlacedTile", "TileSet", "Tileable",
+    "RectTileableConditions", "translateCell", "translateRegion",
+    "swapCell", "swapRegion", "rotateCell", "rotateRegion90",
+    "rect", "RExp",
+}
+
 # ── parser ───────────────────────────────────────────────────────────────────
 DECL_RE = re.compile(
     r'^(?:private\s+|protected\s+)?'
@@ -37,18 +47,27 @@ DOC_RE = re.compile(r'/--' + r'(.*?)' + r'-/', re.DOTALL)
 SECTION_RE = re.compile(r'^/-\s*#{1,3}\s+(.*?)\s*-/', re.MULTILINE)
 
 def extract_docstring(text, pos):
-    """Find the docstring immediately before position pos."""
-    before = text[:pos].rstrip()
-    m = re.search(r'/\-\-(.*?)\-/\s*$', before, re.DOTALL)
-    if m:
-        doc = m.group(1).strip()
-        # collapse whitespace
+    """Find the /-- ... -/ docstring immediately before position pos."""
+    before = text[:pos]
+    # Find ALL docstrings; take the last one if it's immediately before pos
+    all_docs = list(re.finditer(r'/--' + r'(.*?)' + r'-/', before, re.DOTALL))
+    if not all_docs:
+        return None
+    last = all_docs[-1]
+    # Only use it if only whitespace follows it before the declaration
+    after_doc = before[last.end():].strip()
+    if after_doc:
+        return None
+    doc = last.group(1).strip()
+    # Take only the first sentence / first line to keep descriptions short
+    first_line = doc.split('\n')[0].strip()
+    if len(first_line) > 20:
+        doc = first_line
+    else:
         doc = re.sub(r'\s+', ' ', doc)
-        # Truncate very long docs
-        if len(doc) > 300:
-            doc = doc[:297] + '...'
-        return doc
-    return None
+    if len(doc) > 250:
+        doc = doc[:247] + '...'
+    return doc
 
 def label(name):
     """Convert Lean name to a blueprint label (lowercase, dots→underscores)."""
@@ -68,23 +87,75 @@ def tex_escape(s):
     s = s.replace('~', r'\textasciitilde{}')
     return s
 
-def find_body_names(text, decl_start, all_names):
-    """
-    Crude extraction: find all known declaration names that appear
-    in the body of the declaration starting at decl_start.
-    Body = from ':= ' or 'by\n' to the next top-level declaration.
-    """
-    # find next top-level decl to bound the search
-    nxt = DECL_RE.search(text, decl_start + 1)
-    end = nxt.start() if nxt else len(text)
-    body = text[decl_start:end]
-    found = set()
-    for n in all_names:
-        # match as a word (avoid substrings)
-        pat = r'\b' + re.escape(n) + r'\b'
-        if re.search(pat, body):
-            found.add(n)
-    return found
+# Hand-curated \uses{} for the key top-level theorems only.
+# Keys = Lean declaration name; values = list of Lean names it directly uses.
+CURATED_USES = {
+    "rect_tileable_iff": [
+        "LTileable.area_div_3", "not_tileable_1_by_n", "not_tileable_3_by_odd",
+        "tileable_odd_x_mult3", "tileable_even_mult3",
+    ],
+    "rectMinusCorner_tileable_iff": [
+        "rect_tileable_iff",
+        "tileable_rectMinusCorner_mod2_case", "tileable_rectMinusCorner_mod1_case",
+        "rectMinusCorner_tileable_area_div_3",
+    ],
+    "rectMinus2Corner_tileable_of_area_mod2": [
+        "rectMinusCorner_tileable_iff",
+        "tileable_rectangleMinus2Corner_3jplus2_3kplus1",
+        "tileable_rectangleMinus2Corner_3jplus1_3kplus2",
+    ],
+    "tileable_rectangleMinus2Corner_3jplus1_3kplus2": [
+        "tileable_rectangleMinus2Corner_4_3kplus2",
+        "tileable_rectangleMinus2Corner_3jplus2_3kplus1",
+    ],
+    "tileable_rectangleMinus2Corner_4_3kplus2": [
+        "rectMinusCorner_tileable_iff",
+    ],
+    "tileable_rectangleMinus2Corner_3jplus2_3kplus1": [
+        "rect_tileable_iff", "rectMinusCorner_tileable_iff",
+        "LTileable_topRightLTromino",
+    ],
+    "tileable_rectMinusCorner_mod2_case": [
+        "tileable_rectMinusCorner_mod2_jk_ge2",
+        "tileable_3kplus2_x2_minus", "tileable_5x_3kplus2_minus",
+    ],
+    "tileable_rectMinusCorner_mod1_case": [
+        "tileable_rectMinusCorner_mod1_jk_ge",
+        "tileable_4x_rectMinus_3kplus1", "tileable_7x7_minus",
+    ],
+    "tileable_rectMinusCorner_mod2_jk_ge2": [
+        "tileable_3kplus2_x2_minus", "rect_tileable_iff",
+    ],
+    "tileable_rectMinusCorner_mod1_jk_ge": [
+        "tileable_4x_rectMinus_3kplus1", "rect_tileable_iff",
+    ],
+    "tileable_4x_rectMinus_3kplus1": [
+        "tileable_4x4_minus", "rect_tileable_iff",
+    ],
+    "tileable_3kplus2_x2_minus": [
+        "tileable_2x2_minus", "tileable_mult3_x2",
+    ],
+    "tileable_5x_3kplus2_minus": [
+        "tileable_5x_6kplus2_minus", "tileable_5x_6kplus5_minus",
+    ],
+    "tileable_5x_6kplus2_minus": ["tileable_5x2_minus", "tileable_5x6j"],
+    "tileable_5x_6kplus5_minus": ["tileable_5x5_minus", "tileable_5x6j"],
+    "tileable_odd_x_mult3": [
+        "tileable_odd_x_6j", "tileable_odd_ge5_x_6iplus3",
+    ],
+    "tileable_even_mult3": ["tileable_3x_even", "tileable_2x_mult3"],
+    "tileable_odd_x_6j": ["tileable_5x6j", "tileable_even_mult3"],
+    "tileable_odd_ge5_x_6iplus3": [
+        "tileable_odd_x_6j", "tileable_5x_9plus6j",
+    ],
+    "tileable_5x6j":      ["tileable_even_mult3"],
+    "tileable_5x_9plus6j":["tileable_5x6j"],
+    "tileable_3x_even":   ["tileable_2x3"],
+    "tileable_2x_mult3":  ["tileable_2x3"],
+    "not_tileable_3_by_odd": ["not_tileable_1_by_n"],
+    "not_tileable_n_by_1":   ["not_tileable_1_by_n"],
+    "not_tileable_odd_by_3": ["not_tileable_n_by_1"],
+}
 
 # ── main ─────────────────────────────────────────────────────────────────────
 files = sorted(LEAN_DIR.glob("*.lean"))
@@ -119,16 +190,11 @@ for fpath in files:
 all_names = set(all_decls.keys())
 print(f"Total declarations: {len(all_names)}")
 
-# Second pass: extract \uses{} (names from body that appear in our decl set)
+# Second pass: assign \uses{} from curated table only (no text-scanning)
 for name, info in all_decls.items():
-    fpath = LEAN_DIR / info["file"]
-    text = fpath.read_text()
-    body_names = find_body_names(text, info["pos"], all_names)
-    body_names.discard(name)  # don't self-reference
-    # Only keep names that appear as blueprint items (i.e. not skipped)
-    uses = [n for n in sorted(body_names)
-            if all_decls[n]["kind"] not in SKIP_KINDS]
-    info["uses"] = uses
+    raw_uses = CURATED_USES.get(name, [])
+    # Filter to names that actually exist in our decl set
+    info["uses"] = [u for u in raw_uses if u in all_decls]
 
 # ── generate content.tex ─────────────────────────────────────────────────────
 FILE_TITLES = {
