@@ -1,0 +1,209 @@
+#!/usr/bin/env python3
+# Generate blueprint/src/content.tex from all .lean source files.
+# Extracts every public declaration, docstring, and best-effort uses deps.
+
+import re, sys
+from pathlib import Path
+
+LEAN_DIR = Path.home() / ".openclaw/workspace-matty/workspace/TilingPolyomino/TilingPolyomino"
+OUT = Path.home() / ".openclaw/workspace-matty/workspace/TilingPolyomino/blueprint/src/content.tex"
+
+# ── kind mapping ─────────────────────────────────────────────────────────────
+KIND_MAP = {
+    "theorem":          "theorem",
+    "lemma":            "lemma",
+    "def":              "definition",
+    "noncomputable def":"definition",
+    "abbrev":           "definition",
+    "structure":        "definition",
+    "class":            "definition",
+    "instance":         "definition",
+}
+SKIP_KINDS = {"instance", "class"}   # hide from blueprint (noisy)
+
+# Lean names that are pure boilerplate — skip them
+SKIP_NAMES = {
+    "hello",   # Basic.lean placeholder
+}
+
+# ── parser ───────────────────────────────────────────────────────────────────
+DECL_RE = re.compile(
+    r'^(?:private\s+|protected\s+)?'
+    r'(noncomputable\s+def|theorem|lemma|def|abbrev|structure|class|instance)\s+'
+    r'([\w\'\.]+)',
+    re.MULTILINE,
+)
+DOC_RE = re.compile(r'/--' + r'(.*?)' + r'-/', re.DOTALL)
+SECTION_RE = re.compile(r'^/-\s*#{1,3}\s+(.*?)\s*-/', re.MULTILINE)
+
+def extract_docstring(text, pos):
+    """Find the docstring immediately before position pos."""
+    before = text[:pos].rstrip()
+    m = re.search(r'/\-\-(.*?)\-/\s*$', before, re.DOTALL)
+    if m:
+        doc = m.group(1).strip()
+        # collapse whitespace
+        doc = re.sub(r'\s+', ' ', doc)
+        # Truncate very long docs
+        if len(doc) > 300:
+            doc = doc[:297] + '...'
+        return doc
+    return None
+
+def label(name):
+    """Convert Lean name to a blueprint label (lowercase, dots→underscores)."""
+    return name.replace('.', '_').replace("'", "p")
+
+def tex_escape(s):
+    """Minimal TeX escaping for docstring text."""
+    s = s.replace('\\', r'\textbackslash{}')
+    s = s.replace('&', r'\&')
+    s = s.replace('%', r'\%')
+    s = s.replace('$', r'\$')  # keep math inline? risky — just escape
+    s = s.replace('#', r'\#')
+    s = s.replace('^', r'\^{}')
+    s = s.replace('_', r'\_')
+    s = s.replace('{', r'\{')
+    s = s.replace('}', r'\}')
+    s = s.replace('~', r'\textasciitilde{}')
+    return s
+
+def find_body_names(text, decl_start, all_names):
+    """
+    Crude extraction: find all known declaration names that appear
+    in the body of the declaration starting at decl_start.
+    Body = from ':= ' or 'by\n' to the next top-level declaration.
+    """
+    # find next top-level decl to bound the search
+    nxt = DECL_RE.search(text, decl_start + 1)
+    end = nxt.start() if nxt else len(text)
+    body = text[decl_start:end]
+    found = set()
+    for n in all_names:
+        # match as a word (avoid substrings)
+        pat = r'\b' + re.escape(n) + r'\b'
+        if re.search(pat, body):
+            found.add(n)
+    return found
+
+# ── main ─────────────────────────────────────────────────────────────────────
+files = sorted(LEAN_DIR.glob("*.lean"))
+print(f"Processing {len(files)} files: {[f.name for f in files]}")
+
+# First pass: collect ALL declaration names across all files
+all_decls = {}   # name -> {file, kind, pos, doc, label}
+file_decls = {}  # filename -> list of (pos, name)
+
+for fpath in files:
+    text = fpath.read_text()
+    decls = []
+    for m in DECL_RE.finditer(text):
+        raw_kind = m.group(1).strip()
+        name = m.group(2)
+        if name in SKIP_NAMES:
+            continue
+        kind = KIND_MAP.get(raw_kind, "definition")
+        doc = extract_docstring(text, m.start())
+        lbl = label(name)
+        all_decls[name] = {
+            "file": fpath.name,
+            "kind": kind,
+            "raw_kind": raw_kind,
+            "pos": m.start(),
+            "doc": doc,
+            "label": lbl,
+        }
+        decls.append((m.start(), name))
+    file_decls[fpath.name] = decls
+
+all_names = set(all_decls.keys())
+print(f"Total declarations: {len(all_names)}")
+
+# Second pass: extract \uses{} (names from body that appear in our decl set)
+for name, info in all_decls.items():
+    fpath = LEAN_DIR / info["file"]
+    text = fpath.read_text()
+    body_names = find_body_names(text, info["pos"], all_names)
+    body_names.discard(name)  # don't self-reference
+    # Only keep names that appear as blueprint items (i.e. not skipped)
+    uses = [n for n in sorted(body_names)
+            if all_decls[n]["kind"] not in SKIP_KINDS]
+    info["uses"] = uses
+
+# ── generate content.tex ─────────────────────────────────────────────────────
+FILE_TITLES = {
+    "Tiling.lean":    "Tiling Infrastructure",
+    "RectOmega.lean": "Rectangle and Omega Infrastructure",
+    "LTromino.lean":  "L-tromino Tiling of Rectangles and Deficient Rectangles",
+    "Basic.lean":     "Miscellaneous",
+}
+
+lines = []
+lines.append(r"% AUTO-GENERATED by gen_blueprint.py — do not edit by hand")
+lines.append(r"% Regenerate with: python3 gen_blueprint.py")
+lines.append("")
+
+for fpath in files:
+    fname = fpath.name
+    decl_list = file_decls[fname]
+    if not decl_list:
+        continue
+
+    title = FILE_TITLES.get(fname, fname.replace(".lean", ""))
+    lines.append(r"\chapter{" + title + "}")
+    lines.append("")
+
+    text = fpath.read_text()
+
+    # Find section comments within the file to add \section{} breaks
+    section_positions = []
+    for sm in SECTION_RE.finditer(text):
+        section_positions.append((sm.start(), sm.group(1)))
+
+    sec_idx = 0
+    for pos, name in decl_list:
+        info = all_decls[name]
+        if info["kind"] in SKIP_KINDS:
+            continue
+
+        # Emit any section headers that come before this declaration
+        while sec_idx < len(section_positions) and section_positions[sec_idx][0] < pos:
+            lines.append(r"\section{" + section_positions[sec_idx][1] + "}")
+            lines.append("")
+            sec_idx += 1
+
+        kind = info["kind"]
+        lbl  = info["label"]
+        doc  = info["doc"]
+        uses = info["uses"]
+
+        lines.append(r"\begin{" + kind + "}")
+        lines.append(r"  \label{" + lbl + "}")
+        lines.append(r"  \lean{" + name + "}")
+        if uses:
+            # split into lines of ≤4 labels each
+            use_labels = [all_decls[u]["label"] for u in uses if u in all_decls]
+            # deduplicate keeping order
+            seen = set(); use_labels_u = []
+            for ul in use_labels:
+                if ul not in seen: seen.add(ul); use_labels_u.append(ul)
+            chunks = [use_labels_u[i:i+4] for i in range(0, len(use_labels_u), 4)]
+            use_str = (",\n        ").join(", ".join(c) for c in chunks)
+            lines.append(r"  \uses{" + use_str + "}")
+        lines.append(r"  \leanok")
+        lines.append(r"  \proven")
+        if doc:
+            lines.append(r"  " + tex_escape(doc))
+        else:
+            lines.append(r"  \((" + tex_escape(name) + r")\)")
+        lines.append(r"\end{" + kind + "}")
+        lines.append("")
+
+    # flush remaining section headers
+    while sec_idx < len(section_positions):
+        lines.append(r"\section{" + section_positions[sec_idx][1] + "}")
+        lines.append("")
+        sec_idx += 1
+
+OUT.write_text("\n".join(lines) + "\n")
+print(f"Written {OUT} ({OUT.stat().st_size} bytes, {len(lines)} lines)")
